@@ -9,4 +9,6 @@ target 'Lego' do
   pod 'PhoneNumberKit', '~> 3.1'
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
 end
