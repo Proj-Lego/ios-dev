@@ -81,17 +81,18 @@ class PhoneNumberViewController: UIViewController {
     
     @IBAction func nextPressed(_ sender: UIButton) {
         let (countryCode, phoneTxt) = extractPhoneInfo()
-        let (success, errMsg) = session.processPhoneNumber(countryCode: countryCode, phone: phoneTxt)
-        if !success {
-            let alertController = UIAlertController(title: "Oops!", message: errMsg, preferredStyle: .alert)
-            let action = UIAlertAction(title: "Dismiss", style: .default) { (action) in
-                self.dismiss(animated: true, completion: nil)
+        session.processPhoneNumber(countryCode: countryCode, phone: phoneTxt) { (success, errMsg) in
+            if !success {
+                let alertController = UIAlertController(title: "Oops!", message: errMsg, preferredStyle: .alert)
+                let action = UIAlertAction(title: "Dismiss", style: .default) { (action) in
+                    self.dismiss(animated: true, completion: nil)
+                }
+                alertController.addAction(action)
+                self.present(alertController, animated: false, completion: nil)
+                return
             }
-            alertController.addAction(action)
-            present(alertController, animated: true, completion: nil)
-            return
+            self.performSegue(withIdentifier: "phoneNumberToPhoneVerify", sender: sender)
         }
-        performSegue(withIdentifier: "phoneNumberToPhoneVerify", sender: sender)
     }
     
     @IBAction func countryCodePressed(_ sender: Any) {

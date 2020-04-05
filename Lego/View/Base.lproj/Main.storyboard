@@ -272,7 +272,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="OTP Field" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ip6-Wz-pOS">
                                 <rect key="frame" x="162" y="431" width="90.5" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" textContentType="one-time-code"/>
                                 <connections>
                                     <action selector="otpEdited:" destination="9LA-GZ-XOk" eventType="editingChanged" id="EMZ-VY-YQm"/>
                                 </connections>

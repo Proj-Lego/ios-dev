@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 import PhoneNumberKit
 
 var session = LoginSession()
@@ -74,26 +75,51 @@ class LoginSession {
         }
     }
     
-    func processPhoneNumber(countryCode: String, phone: String) -> (Bool, String) {
-        // verify phone
-        if !self.phoneIsValid(phone: phone) {
-            // phone invalid
-            return (false, "Phone number was in an invalid format.")
+    func processPhoneNumber(countryCode: String, phone: String, completion: @escaping (Bool, String) -> ()) {
+        if !self.phoneIsValid(phone: phone) { // phone invalid
+            completion(false, "Phone number was in an invalid format.")
         }
-        // TODO phone valid, use Firebase to send push
         self.phoneNumber = countryCode + phone
-        return (true, "")
+        var phoneNumber: PhoneNumber
+        do {
+            phoneNumber = try phoneNumberKit.parse("+" + String(self.country.code) + phone)
+        } catch {
+            completion(false, "Could not parse phoneNumber to object")
+            return
+        }
+        // Phone format validated, use Firebase to send push
+        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumberKit.format(phoneNumber, toType: .e164), uiDelegate: nil) { (verificationID, error) in
+            if let error = error {
+                completion(false, error.localizedDescription)
+                return
+            }
+            UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+            UserDefaults.standard.synchronize()
+            completion(true, "")
+        }
     }
     
-    func processOTP(otp: String) -> (Bool, String) {
+    func processOTP(otp: String, completion: @escaping (Bool, String) -> ()){
         // verify otp
-        if !self.otpIsValid(otp: otp) {
-            // otp invalid
-            return (false, "Code was in an invalid format.")
+        if !self.otpIsValid(otp: otp) { // otp invalid
+            completion(false, "Code was in an invalid format.")
+            return
         }
-        // TODO otp valid, authenticate with Firebase
+        // OTP validated, now authenticate with Firebase
         self.otp = otp
-        return (true, "")
+        guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else {
+            completion(false, "Failed to unwrap verification ID")
+            return
+        }
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: otp)
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            if let error = error {
+                completion(false, error.localizedDescription)
+                return
+            }
+            completion(true, "")
+        }
     }
     
     func phoneIsValid(phone: String) -> Bool {

@@ -62,17 +62,20 @@ class PhoneVerifyViewController: UIViewController {
     
     @IBAction func nextPressed(_ sender: Any) {
         guard let numsTxt = otpTxtField.text else { return }
-        let (success, errMsg) = session.processOTP(otp: numsTxt)
-        if !success {
-            let alertController = UIAlertController(title: "Oops!", message: errMsg, preferredStyle: .alert)
+        session.processOTP(otp: numsTxt) { (success, errMsg) in
+            // TODO segue to home screen...
+            var title = "Success"
+            if !success {
+                title = "Oops!"
+            }
+            let alertController = UIAlertController(title: title, message: errMsg, preferredStyle: .alert)
             let action = UIAlertAction(title: "Dismiss", style: .default) { (action) in
                 self.dismiss(animated: true, completion: nil)
             }
             alertController.addAction(action)
-            present(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: false, completion: nil)
             return
         }
-        // authenticated, load the next view.
     }
 }
 
