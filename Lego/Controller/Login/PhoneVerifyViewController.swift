@@ -18,6 +18,7 @@ class PhoneVerifyViewController: UIViewController {
     @IBOutlet weak var nextBtn: UIButton!
     
     var phoneNumber: String!
+    var phoneTxt: String!
     
     override func viewWillAppear(_ animated: Bool) {
         otpTxtField.becomeFirstResponder()
@@ -57,7 +58,21 @@ class PhoneVerifyViewController: UIViewController {
     }
     
     @IBAction func resendCode(_ sender: UIButton) {
-        print("resend")
+        session.processPhoneNumber(countryCode: session.getCountryCodeString(withFlag: false), phone: phoneTxt) { (success, errMsg) in
+            var alertTxt = "Hang tight!"
+            var errTxt = "We have resent the verification code"
+            if !success {
+                alertTxt = "Oops!"
+                errTxt = errMsg
+            }
+            let alertController = UIAlertController(title: alertTxt, message: errTxt, preferredStyle: .alert)
+            let action = UIAlertAction(title: "Dismiss", style: .default) { (action) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            alertController.addAction(action)
+            self.present(alertController, animated: false, completion: nil)
+            return
+        }
     }
     
     @IBAction func nextPressed(_ sender: Any) {

@@ -49,7 +49,10 @@ class PhoneNumberViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let verifyController = segue.destination as? PhoneVerifyViewController
         let (_, phoneTxt) = extractPhoneInfo()
-        verifyController?.phoneNumber = session.getCountryCodeString(withFlag: false) + " " + session.cleanAndGeneratePhoneString(phone: phoneTxt)
+        let newPhoneTxt = session.cleanAndGeneratePhoneString(phone: phoneTxt)
+        verifyController?.phoneTxt = newPhoneTxt
+        verifyController?.phoneNumber = session.getCountryCodeString(withFlag: false) + " " + session.cleanAndGeneratePhoneString(phone: newPhoneTxt)
+        
     }
     
     // Returns country code and phone number separately
