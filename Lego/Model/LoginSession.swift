@@ -88,7 +88,6 @@ class LoginSession {
             return
         }
         // Phone format validated, use Firebase to send push
-        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumberKit.format(phoneNumber, toType: .e164), uiDelegate: nil) { (verificationID, error) in
             if let error = error {
                 completion(false, error.localizedDescription)
