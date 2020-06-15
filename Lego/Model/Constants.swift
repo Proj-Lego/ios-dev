@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+struct LegoFSConsts {
+    static let usersPrivColl = "users_priv"
+    static let usersPubColl = "users_pub"
+}
+
 struct LegoColorConstants {
     static let darkBlue = simpleColor(red: 8, green: 65, blue: 92)
     static let red = simpleColor(red: 204, green: 41, blue: 54)

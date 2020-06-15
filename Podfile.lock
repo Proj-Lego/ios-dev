@@ -72,6 +72,8 @@ PODS:
     - leveldb-library (~> 1.22)
     - nanopb (~> 0.3.901)
     - Protobuf (>= 3.9.2, ~> 3.9)
+  - FirebaseFirestoreSwift (0.3.0):
+    - FirebaseFirestore (>= 1.6.1, ~> 1.6)
   - FirebaseInstanceID (4.2.6):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
@@ -142,7 +144,7 @@ PODS:
   - PhoneNumberKit/PhoneNumberKitCore (3.2.0)
   - PhoneNumberKit/UIKit (3.2.0):
     - PhoneNumberKit/PhoneNumberKitCore
-  - Protobuf (3.11.4)
+  - Protobuf (3.12.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -150,6 +152,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Firestore
   - Firebase/Messaging
+  - FirebaseFirestoreSwift
   - PhoneNumberKit (~> 3.1)
 
 SPEC REPOS:
@@ -165,6 +168,7 @@ SPEC REPOS:
     - FirebaseCoreDiagnosticsInterop
     - FirebaseDatabase
     - FirebaseFirestore
+    - FirebaseFirestoreSwift
     - FirebaseInstanceID
     - FirebaseMessaging
     - GoogleAppMeasurement
@@ -191,6 +195,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
   FirebaseDatabase: 0144e0706a4761f1b0e8679572eba8095ddb59be
   FirebaseFirestore: bb8315fa13a15ea8977e940496b74ba6ad9071f2
+  FirebaseFirestoreSwift: 0cda93628782ca5a817cfecd2a8c0187436c0ae5
   FirebaseInstanceID: d0eafcd8bdbd3447cd694594734078c3e3e77d8b
   FirebaseMessaging: 089b7a4991425783384acc8bcefcd78c0af913bd
   GoogleAppMeasurement: 434cc7be25e71dc04b8d0e3079125127b330e84a
@@ -203,8 +208,8 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PhoneNumberKit: df411d46177d1492da84e10b6c093846dd861452
-  Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
+  Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
 
-PODFILE CHECKSUM: 98de018b6bd6cb68ec32aab981d180e169b06c42
+PODFILE CHECKSUM: be30c54274bc12c7ab9ad0e22ad32a1defa3ef82
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3
