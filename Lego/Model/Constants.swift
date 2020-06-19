@@ -12,6 +12,7 @@ import UIKit
 struct LegoFSConsts {
     static let usersPrivColl = "users_priv"
     static let usersPubColl = "users_pub"
+    static let chatsColl = "chats"
 }
 
 struct LegoColorConstants {

@@ -26,7 +26,7 @@ struct UserPrivate : Codable {
     var password: String? = ""
     var latitude: Double? = 0.0
     var longitude: Double? = 0.0
-    var chats: [UUID]? = []
+    var chats: Set<String>? = []
     var poiGender: String? = ""
     //Any additional user specific features (ie. matchRate, favoriteHosts, etc...)
 }
@@ -117,6 +117,31 @@ class User {
     }
     
     //TODO: Function to add a chat to chats
+    func createChat(otherUserID: String) {
+        let newChatID: String = getChatIDWith(otherUserID: otherUserID)
+        let chatDoc = db.collection(LegoFSConsts.chatsColl).document(newChatID)
+        myPrivData!.chats!.insert(newChatID)
+        chatDoc.setData(["chatName": "Get Chatting ;)", "messages": []])
+        privUserDoc.updateData(["chats": FieldValue.arrayUnion([newChatID])])
+        db.collection(LegoFSConsts.usersPrivColl).document(otherUserID).updateData(["chats": FieldValue.arrayUnion([newChatID])])
+    }
+    
+    func sendMessageTo(otherUserID: String, message: String) {
+        let chatID: String = getChatIDWith(otherUserID: otherUserID)
+        db.collection(LegoFSConsts.chatsColl).document(chatID).updateData(["messages": FieldValue.arrayUnion([["timestamp": Timestamp(date: Date()), "senderID": user!.uid, "message": message]])])
+        //TODO: Write a cloud function to send otherUser a push notification
+//        Decode Timestamp into Date:
+//        let ts = document.get("timestamp") as! Timestamp
+//        let date = ts.dateValue()
+    }
+    
+    func getChatIDWith(otherUserID: String) -> String {
+        if user!.uid > otherUserID {
+            return user!.uid + otherUserID
+        } else {
+            return otherUserID + user!.uid
+        }
+    }
     
     func setPOIGender(gender: String) {
         privUserDoc.updateData(["poiGender": gender])

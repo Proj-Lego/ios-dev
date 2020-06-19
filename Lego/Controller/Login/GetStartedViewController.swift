@@ -19,11 +19,9 @@ class GetStartedViewController: UIViewController {
 //        if (Auth.auth().currentUser != nil) {
 //            print("User already logged in, can navigate away...")
 //            let user = User.init()
-//            user.createUser()
-//            user.setPOIGender(gender: "Female")
-//            user.setGender(gender: "Male")
-//            user.setBio(bio: "New Bio!")
-//            user.loadFromDB()
+//            let shreyasID = "VAon5tawOJ1G4rKaGr28"
+//            user.createChat(otherUserID: shreyasID)
+//            user.sendMessageTo(otherUserID: shreyasID, message: "Hello wanker")
 //        }
         
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
