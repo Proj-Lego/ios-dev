@@ -14,43 +14,44 @@ import FirebaseAuth
 import FirebaseFirestoreSwift
 
 struct UserData {
-    var privateData: UserPrivate
-    var publicData: UserPublic
+    var privateData: PrivateProfile
+    var publicData: PublicProfile
 }
 
 //users is a top level collection of UserPrivate documents
-struct UserPrivate : Codable {
+struct PrivateProfile : Codable {
     @DocumentID var id: String? = UUID().uuidString
     var phoneNumber: String = ""
-    var email: String? = ""
-    var password: String? = ""
-    var latitude: Double? = 0.0
-    var longitude: Double? = 0.0
-    var chats: Set<String>? = []
-    var poiGender: String? = ""
+    var email: String = ""
+    var password: String = ""
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
+    var chats: Set<String> = []
+    var poiGender: String = ""
     //Any additional user specific features (ie. matchRate, favoriteHosts, etc...)
 }
 
 //UserPrivate documents are attached to a public_profile collection which contains a document with public information
-struct UserPublic : Codable {
+struct PublicProfile : Codable {
     @DocumentID var id: String? = UUID().uuidString
-    var firstname: String? = ""
-    var lastname: String? = ""
+    var firstname: String = ""
+    var lastname: String = ""
     //profile pic? or we can just select the first pic in pictures below
     //pictures will contain links to fetch images, possibly berkeley drive?
-    var pictures: [String]? = []
-    var bio: String? = ""
-    var dateOfBirth: Date? = Date.init()
-    var gender: String? = ""
+    var pictures: [String] = []
+    var bio: String = ""
+    var dateOfBirth: Date = Date.init()
+    var gender: String = ""
 }
+
 
 class User {
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
-    let privUserDoc: DocumentReference
-    let pubUserDoc: DocumentReference
-    var myPrivData: UserPrivate?
-    var myPubData: UserPublic?
+    var privUserDoc: DocumentReference
+    var pubUserDoc: DocumentReference
+    var privProfile = PrivateProfile()
+    var pubProfile = PublicProfile()
     
     init() {
         if (user == nil) {
@@ -59,29 +60,25 @@ class User {
         }
         privUserDoc = db.collection(LegoFSConsts.usersPrivColl).document(user!.uid)
         pubUserDoc = privUserDoc.collection(LegoFSConsts.usersPubColl).document(user!.uid)
-        self.loadFromDB()
+//        self.loadFromDB() //Include if no listeners are declared to load user data
     }
     
     func createUser() {
         print("creating user...")
-        privUserDoc.setData(["phoneNumber": user!.phoneNumber!])
-        pubUserDoc.setData(["firstname": "Abhinav", "lastname": "Pottabathula", "bio": "myBio", "gender": "myGender"])
-        
 //        Temp for testing:
-//        let privData = UserPrivate(phoneNumber: user!.phoneNumber!)
-//        var pubData = UserPublic(id: user!.uid)
-//        let pubData = UserPublic(firstname: "Abhinav", lastname: "Pottabathula", bio: "myBio", gender: "myGender")
-//        do {
-//            let privData = try JSONEncoder().encode(privData)
-//            let pubData = try JSONEncoder().encode(pubData)
-//            try newPrivUser.setData(from: privData)
-//            try newPubUser.setData(from: pubData)
-//        } catch {
-//            //TODO: throw some exception if JSON encoding failed
-//            print(error)
-//        }
+        let privData = PrivateProfile(phoneNumber: user!.phoneNumber!)
+        let pubData = PublicProfile(firstname: "Abhinav", lastname: "Pottabathula", bio: "myBio", gender: "myGender")
+        do {
+            try privUserDoc.setData(from: privData)
+            try pubUserDoc.setData(from: pubData)
+        } catch {
+            //TODO: throw some exception if JSON encoding failed
+            print(error)
+        }
     }
 
+    
+    //TODO: Consolidate set operations into a single write request based on Views
     func setEmail(email: String) {
         self.reauthorizePopUp()
         user?.updateEmail(to: email) { (error) in
@@ -91,6 +88,10 @@ class User {
             }
         }
         privUserDoc.updateData(["email": email])
+    }
+    
+    func getEmail() -> String {
+        return (user?.email)!
     }
     
     func setPassword(pass: String) {
@@ -116,11 +117,11 @@ class User {
         privUserDoc.updateData(["location": GeoPoint.init(latitude: lat, longitude: long)])
     }
     
-    //TODO: Function to add a chat to chats
+    //TODO: getLocation (should call setLocation inside to update firestore)
+    
     func createChat(otherUserID: String) {
         let newChatID: String = getChatIDWith(otherUserID: otherUserID)
         let chatDoc = db.collection(LegoFSConsts.chatsColl).document(newChatID)
-        myPrivData!.chats!.insert(newChatID)
         chatDoc.setData(["chatName": "Get Chatting ;)", "messages": []])
         privUserDoc.updateData(["chats": FieldValue.arrayUnion([newChatID])])
         db.collection(LegoFSConsts.usersPrivColl).document(otherUserID).updateData(["chats": FieldValue.arrayUnion([newChatID])])
@@ -130,9 +131,6 @@ class User {
         let chatID: String = getChatIDWith(otherUserID: otherUserID)
         db.collection(LegoFSConsts.chatsColl).document(chatID).updateData(["messages": FieldValue.arrayUnion([["timestamp": Timestamp(date: Date()), "senderID": user!.uid, "message": message]])])
         //TODO: Write a cloud function to send otherUser a push notification
-//        Decode Timestamp into Date:
-//        let ts = document.get("timestamp") as! Timestamp
-//        let date = ts.dateValue()
     }
     
     func getChatIDWith(otherUserID: String) -> String {
@@ -143,16 +141,32 @@ class User {
         }
     }
     
+    func getChatIDs() -> Set<String> {
+        return privProfile.chats
+    }
+    
     func setPOIGender(gender: String) {
         privUserDoc.updateData(["poiGender": gender])
+    }
+    
+    func getPOIGender() -> String {
+        return privProfile.poiGender
     }
     
     func setFirstname(firstname: String) {
         pubUserDoc.updateData(["firstname": firstname])
     }
     
+    func getFirstname() -> String {
+        return pubProfile.firstname
+    }
+    
     func setLastname(lastname: String) {
         pubUserDoc.updateData(["lastname": lastname])
+    }
+    
+    func getLastname() -> String {
+        return pubProfile.lastname
     }
     
     //TODO: Function to set/upload pics
@@ -161,29 +175,41 @@ class User {
         pubUserDoc.updateData(["bio": bio])
     }
     
+    func getBio() -> String {
+        return pubProfile.bio
+    }
+    
     func setDOB(dob: Date) {
         pubUserDoc.updateData(["dateOfBirth": dob])
+    }
+    
+    func getDOB() -> Date {
+        return pubProfile.dateOfBirth
     }
     
     func setGender(gender: String) {
         pubUserDoc.updateData(["gender": gender])
     }
     
-    func loadFromDB() {
-        myPrivData = getPrivData()
-        myPubData = getPubData()
+    func getGender() -> String {
+        return pubProfile.gender
     }
     
-    func getPrivData() -> UserPrivate {
-        var privData = UserPrivate()
+    func loadFromDB() {
+        privProfile = getPrivData()
+        pubProfile = getPubData()
+    }
+    
+    func getPrivData() -> PrivateProfile {
+        var privData = PrivateProfile()
         privUserDoc.getDocument { (document, error) in
             let result = Result {
-                try document?.data(as: UserPrivate.self)
+                try document?.data(as: PrivateProfile.self)
             }
             switch result {
             case .success(let data):
                 if let data = data {
-                    print(data)
+//                    print(data)
                     privData = data
                 } else {
                     print("Document does not exist, got nil DocumentSnapshot")
@@ -195,16 +221,16 @@ class User {
         return privData
     }
     
-    func getPubData() -> UserPublic {
-        var pubData = UserPublic()
+    func getPubData() -> PublicProfile {
+        var pubData = PublicProfile()
         pubUserDoc.getDocument { (document, error) in
             let result = Result {
-              try document?.data(as: UserPublic.self)
+              try document?.data(as: PublicProfile.self)
             }
             switch result {
             case .success(let data):
                 if let data = data {
-                    print(data)
+//                    print(data)
                     pubData = data
                 } else {
                     print("Document does not exist, got nil DocumentSnapshot")

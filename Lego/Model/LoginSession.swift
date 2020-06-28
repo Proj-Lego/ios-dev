@@ -119,9 +119,6 @@ class LoginSession {
             }
             completion(true, "")
         }
-        let newUser = User.init()
-        newUser.createUser()
-        
     }
     
     func phoneIsValid(phone: String) -> Bool {
