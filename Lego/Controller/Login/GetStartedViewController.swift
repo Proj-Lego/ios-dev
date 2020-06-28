@@ -18,16 +18,19 @@ class GetStartedViewController: UIViewController {
     @IBOutlet weak var phoneArrow: UIImageView!
     @IBOutlet weak var phoneCircle: UIImageView!
     @IBOutlet weak var termsLabel: UILabel!
+//    let user = User.init()
     
     override func viewWillAppear(_ animated: Bool) {
-//        Testing Create User Code :
-//        if (Auth.auth().currentUser != nil) {
-//            print("User already logged in, can navigate away...")
-//            let user = User.init()
+        if (Auth.auth().currentUser != nil) {
+            print("signed in already")
+            //TODO: Navigate to main screen
+            print("User already logged in, can navigate away...")
+//            user.setBio(bio: "hello guys!")
+//            print("My bio is: " + user.getBio())
 //            let shreyasID = "VAon5tawOJ1G4rKaGr28"
 //            user.createChat(otherUserID: shreyasID)
 //            user.sendMessageTo(otherUserID: shreyasID, message: "Hello wanker")
-//        }
+        }
         
         view.backgroundColor = LegoColorConstants.backgroundColor
         
@@ -75,6 +78,49 @@ class GetStartedViewController: UIViewController {
         termsLabel.textColor = LegoColorConstants.gray
         termsLabel.numberOfLines = 0
         termsLabel.lineBreakMode = .byWordWrapping
+        
+        //TODO: The following two listeners should be placed in any view which needs User Data
+//        self.user.privUserDoc.addSnapshotListener { documentSnapshot, error in
+//            guard let document = documentSnapshot else {
+//                print("Error fetching document: \(error!)")
+//                return
+//            }
+//            let result = Result {
+//                try document.data(as: PrivateProfile.self)
+//            }
+//            switch result {
+//            case .success(let data):
+//                if let data = data {
+//                    self.user.privProfile = data
+//                    print("Updated priv data")
+//                } else {
+//                    print("Document does not exist, got nil DocumentSnapshot")
+//                }
+//            case .failure(let error):
+//                print("Error decoding UserPrivate: \(error)")
+//            }
+//        }
+//        
+//        self.user.pubUserDoc.addSnapshotListener { documentSnapshot, error in
+//            guard let document = documentSnapshot else {
+//                print("Error fetching document: \(error!)")
+//                return
+//            }
+//            let result = Result {
+//                try document.data(as: PublicProfile.self)
+//            }
+//            switch result {
+//            case .success(let data):
+//                if let data = data {
+//                    self.user.pubProfile = data
+//                    print("updated pub data")
+//                    print(self.user.getBio())
+//                } else {
+//                    print("Document does not exist, got nil DocumentSnapshot")
+//                }
+//            case .failure(let error):
+//                print("Error decoding UserPrivate: \(error)")
+//            }
+//        }
     }
-
 }

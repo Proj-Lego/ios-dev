@@ -7,17 +7,129 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "68551C79-2B7D-4E8F-81EC-2641040BCFE4"
+            uuid = "B101D117-5790-4135-95DB-22404068D065"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lego/Model/User.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "createChat(otherUserID:)"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
+            landmarkName = "getPrivData()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "79DB2EDF-03E2-4896-BD2B-9874DEF7460B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lego/Model/User.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
+            landmarkName = "getPubData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D5F7D62F-A95A-4458-8A81-ECF2633B6C05"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lego/Model/User.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "getPrivData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D5F7D62F-A95A-4458-8A81-ECF2633B6C05 - 5025c66f10e7cca2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Lego.User.getPrivData() -&gt; Lego.UserPrivate"
+                  moduleName = "Lego"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apottaba/Desktop/Lego/ios-dev/Lego/Model/User.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "232">
+               </Location>
+               <Location
+                  uuid = "D5F7D62F-A95A-4458-8A81-ECF2633B6C05 - e0d6ec379b582ef3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () throws -&gt; Swift.Optional&lt;Lego.UserPrivate&gt; in closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Lego.User.getPrivData() -&gt; Lego.UserPrivate"
+                  moduleName = "Lego"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apottaba/Desktop/Lego/ios-dev/Lego/Model/User.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "211"
+                  endingLineNumber = "211"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E2EFE1D2-39D0-4D07-995E-EC9E0A2026D9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lego/Model/User.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "getPrivData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E2EFE1D2-39D0-4D07-995E-EC9E0A2026D9 - cc011b50f7cd8483"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Lego.User.getPrivData() -&gt; Lego.UserPrivate"
+                  moduleName = "Lego"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apottaba/Desktop/Lego/ios-dev/Lego/Model/User.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "209"
+                  endingLineNumber = "209"
+                  offsetFromSymbolStart = "156">
+               </Location>
+               <Location
+                  uuid = "E2EFE1D2-39D0-4D07-995E-EC9E0A2026D9 - 5025c66f10e7cca2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Lego.User.getPrivData() -&gt; Lego.UserPrivate"
+                  moduleName = "Lego"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apottaba/Desktop/Lego/ios-dev/Lego/Model/User.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "208"
+                  endingLineNumber = "208"
+                  offsetFromSymbolStart = "176">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
