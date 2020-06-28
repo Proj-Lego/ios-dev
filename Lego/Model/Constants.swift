@@ -21,8 +21,19 @@ struct LegoColorConstants {
     static let pink = simpleColor(red: 235, green: 186, blue: 135)
     static let lightBlue = simpleColor(red: 56, green: 134, blue: 151)
     static let aqua = simpleColor(red: 181, green: 255, blue: 225)
-    static let white = simpleColor(red: 255, green: 255, blue: 255)
+    static let white = UIColor.white // simpleColor(red: 255, green: 255, blue: 255)
+    static let gray = UIColor(red: 0.541, green: 0.494, blue: 0.604, alpha: 1)
     static let black = simpleColor(red: 0, green: 0, blue: 0)
+    static let purple = UIColor(red: 0.447, green: 0.235, blue: 0.922, alpha: 1)
+    static let backgroundColor = UIColor(red: 0.098, green: 0.094, blue: 0.122, alpha: 1)
+    static let buttonColor = UIColor(red: 0.141, green: 0.125, blue: 0.165, alpha: 1)
+    static let subButtonColor = UIColor(red: 0.223, green: 0.199, blue: 0.258, alpha: 1)
+}
+
+struct LegoFonts {
+    static let SFProTextBold = UIFont(name: "SF-Pro-Text-Bold", size: 17)
+    static let SFProTextMedium = UIFont(name: "SF-Pro-Text-Medium", size: 17)
+    static let SFProDisplayBold = UIFont(name: "SF-Pro-Display-Bold", size: 17)
 }
 
 struct LegoDefaultImages {

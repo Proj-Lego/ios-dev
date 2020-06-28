@@ -15,7 +15,6 @@ class PhoneNumberViewController: UIViewController {
     @IBOutlet weak var phoneNumberTxtField: UITextField!
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var countryCodeBtn: UIButton!
-    @IBOutlet weak var differentSignInBtn: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         phoneNumberTxtField.becomeFirstResponder()
@@ -37,13 +36,22 @@ class PhoneNumberViewController: UIViewController {
         countryCodeBtn.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
         countryCodeBtn.setTitleColor(LegoColorConstants.black, for: .normal)
         countryCodeBtn.setTitle(session.getCountryCodeString(withFlag: true), for: .normal)
+        countryCodeBtn.titleLabel?.font = LegoFonts.SFProTextMedium
+        countryCodeBtn.titleLabel?.font = countryCodeBtn.titleLabel?.font.withSize(17)
         
-        view.backgroundColor = LegoColorConstants.darkBlue
+        view.backgroundColor = LegoColorConstants.backgroundColor
+        
         titleLabel.textColor = LegoColorConstants.white
-        instructionLabel.textColor = LegoColorConstants.white
+        titleLabel.font = LegoFonts.SFProTextBold
+        titleLabel.font = titleLabel.font.withSize(32)
+        
+        instructionLabel.textColor = LegoColorConstants.gray
+        instructionLabel.font = LegoFonts.SFProTextMedium
+        instructionLabel.font = instructionLabel.font.withSize(15)
+        
         nextBtn.backgroundColor = LegoColorConstants.white
+        
         countryCodeBtn.backgroundColor = LegoColorConstants.white
-        differentSignInBtn.setTitleColor(LegoColorConstants.aqua, for: .normal)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -60,16 +68,6 @@ class PhoneNumberViewController: UIViewController {
         guard let phoneTxt = phoneNumberTxtField.text else { return ("", "") }
         guard let countryBtnContents = countryCodeBtn.titleLabel?.text else { return ("", phoneTxt)}
         return (String(countryBtnContents.split(separator: " ")[1]), phoneTxt)
-    }
-    
-    @IBAction func differentSignInPressed(_ sender: Any) {
-        let alertController = UIAlertController(title: "Oops!", message: "We currently only support phone sign in, check back later for more options.", preferredStyle: .alert)
-                   let action = UIAlertAction(title: "Dismiss", style: .default) { (action) in
-                       self.dismiss(animated: true, completion: nil)
-                   }
-                   alertController.addAction(action)
-                   present(alertController, animated: false, completion: nil)
-                   return
     }
     
     @IBAction func phoneNumberChanged(_ sender: UITextField) {

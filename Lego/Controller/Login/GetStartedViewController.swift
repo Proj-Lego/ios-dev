@@ -11,8 +11,13 @@ import FirebaseAuth
 
 class GetStartedViewController: UIViewController {
 
-    @IBOutlet weak var logoImage: UIImageView!
-    @IBOutlet weak var getStartedBtn: UIButton!
+    @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var mainLabel: UILabel!
+    @IBOutlet weak var subLabel: UILabel!
+    @IBOutlet weak var phoneBtn: UIButton!
+    @IBOutlet weak var phoneArrow: UIImageView!
+    @IBOutlet weak var phoneCircle: UIImageView!
+    @IBOutlet weak var termsLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
 //        Testing Create User Code :
@@ -24,19 +29,52 @@ class GetStartedViewController: UIViewController {
 //            user.sendMessageTo(otherUserID: shreyasID, message: "Hello wanker")
 //        }
         
+        view.backgroundColor = LegoColorConstants.backgroundColor
+        
+        // TODO put 'welcome' in navigation bar title.
+        
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.tintColor = LegoColorConstants.aqua
+        navigationController?.navigationBar.tintColor = LegoColorConstants.purple
         navigationController?.navigationBar.barStyle = .black
         
-        logoImage.image = UIImage(named: "logo.png")
-        logoImage.layer.cornerRadius = logoImage.frame.height / 8
-        getStartedBtn.layer.cornerRadius = getStartedBtn.frame.height / 2
+        welcomeLabel.font = LegoFonts.SFProTextBold
+        welcomeLabel.font = welcomeLabel.font.withSize(32)
+        welcomeLabel.text = "Welcome"
+        welcomeLabel.textColor = LegoColorConstants.white
         
-        view.backgroundColor = LegoColorConstants.darkBlue
-        getStartedBtn.backgroundColor = LegoColorConstants.red
-        getStartedBtn.setTitleColor(LegoColorConstants.white, for: .normal)
+        mainLabel.font = LegoFonts.SFProDisplayBold
+        mainLabel.font = mainLabel.font.withSize(32)
+        mainLabel.text = "Swipe \nUnlimited"
+        mainLabel.textColor = LegoColorConstants.white
+        mainLabel.numberOfLines = 0
+        mainLabel.lineBreakMode = .byWordWrapping
+        
+        subLabel.font = LegoFonts.SFProTextBold
+        subLabel.font = subLabel.font.withSize(14)
+        subLabel.text = "Spin and get more than swipes"
+        subLabel.textColor = LegoColorConstants.gray
+        
+        phoneBtn.setTitle("                    Phone login", for: .normal)
+        phoneBtn.titleLabel?.font = LegoFonts.SFProTextMedium
+        phoneBtn.titleLabel?.font = phoneBtn.titleLabel?.font.withSize(14)
+        phoneBtn.contentHorizontalAlignment = .left
+        phoneBtn.layer.cornerRadius = 15
+        phoneBtn.backgroundColor = LegoColorConstants.buttonColor
+        phoneBtn.setTitleColor(LegoColorConstants.white, for: .normal)
+        
+        phoneCircle.tintColor = LegoColorConstants.white
+        
+        phoneArrow.tintColor = LegoColorConstants.white
+        phoneArrow.layer.cornerRadius = phoneArrow.frame.height / 2
+        
+        termsLabel.font = LegoFonts.SFProTextBold
+        termsLabel.font = subLabel.font.withSize(14)
+        termsLabel.text = "By joining you accept our\nterms and conditions"
+        termsLabel.textColor = LegoColorConstants.gray
+        termsLabel.numberOfLines = 0
+        termsLabel.lineBreakMode = .byWordWrapping
     }
 
 }

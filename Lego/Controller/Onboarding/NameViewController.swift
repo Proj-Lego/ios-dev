@@ -10,6 +10,10 @@ import UIKit
 
 class NameViewController: UIViewController {
 
+    @IBOutlet weak var mainLabel: UILabel!
+    @IBOutlet weak var subLabel: UILabel!
+    @IBOutlet weak var nextBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

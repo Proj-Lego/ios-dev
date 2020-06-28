@@ -37,7 +37,7 @@ class PhoneVerifyViewController: UIViewController {
         otpTxtField.isHidden = true
         nextBtn.isHidden = true
         
-        view.backgroundColor = LegoColorConstants.darkBlue
+        view.backgroundColor = LegoColorConstants.backgroundColor
         titleLabel.textColor = LegoColorConstants.white
         instructionLabel.textColor = LegoColorConstants.white
         otpLabel.textColor = LegoColorConstants.white
