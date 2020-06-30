@@ -12,11 +12,7 @@ import Firebase
 import CoreLocation
 import FirebaseAuth
 import FirebaseFirestoreSwift
-
-struct UserData {
-    var privateData: PrivateProfile
-    var publicData: PublicProfile
-}
+import FirebaseStorage
 
 //users is a top level collection of UserPrivate documents
 struct PrivateProfile : Codable {
@@ -36,8 +32,7 @@ struct PublicProfile : Codable {
     @DocumentID var id: String? = UUID().uuidString
     var firstname: String = ""
     var lastname: String = ""
-    //profile pic? or we can just select the first pic in pictures below
-    //pictures will contain links to fetch images, possibly berkeley drive?
+    var profPic: String = ""
     var pictures: [String] = []
     var bio: String = ""
     var dateOfBirth: Date = Date.init()
@@ -50,6 +45,7 @@ class User {
     let user = Auth.auth().currentUser
     var privUserDoc: DocumentReference
     var pubUserDoc: DocumentReference
+    let storageRef: StorageReference
     var privProfile = PrivateProfile()
     var pubProfile = PublicProfile()
     
@@ -60,6 +56,7 @@ class User {
         }
         privUserDoc = db.collection(LegoFSConsts.usersPrivColl).document(user!.uid)
         pubUserDoc = privUserDoc.collection(LegoFSConsts.usersPubColl).document(user!.uid)
+        storageRef = Storage.storage().reference()
 //        self.loadFromDB() //Include if no listeners are declared to load user data
     }
     
@@ -169,7 +166,71 @@ class User {
         return pubProfile.lastname
     }
     
-    //TODO: Function to set/upload pics
+    func setProfPic(pic: URL) -> StorageUploadTask {
+        let imageRef = storageRef.child(user!.uid).child("prof_pic")
+        let uploadTask = imageRef.putFile(from: pic, metadata: nil) { metadata, error in
+            if error != nil {
+                print("Failed to upload profile picture \(String(describing: error))")
+                return
+            }
+            imageRef.downloadURL { (url, error) in
+                guard let downloadURL = url else {
+                    print("Failed to get downloadURL reference for profile picture")
+                    return
+                }
+                self.pubUserDoc.updateData(["pictures": downloadURL])
+            }
+        }
+        return uploadTask
+    }
+    
+    func getProfPic() -> StorageReference {
+        return storageRef.child(user!.uid).child("prof_pic")
+    }
+    
+    func getProfPic(otherUserID: String) -> StorageReference {
+        return storageRef.child(otherUserID).child("prof_pic")
+    }
+    
+    func setPictures(pics: [URL]) -> [StorageUploadTask] {
+        var tasks: [StorageUploadTask] = []
+        for index in 0...(pics.count - 1) {
+            let imageRef = storageRef.child(user!.uid).child(String(index))
+            let uploadTask = imageRef.putFile(from: pics[index], metadata: nil) { metadata, error in
+                if error != nil {
+                    print("Failed to upload picture \(String(describing: error))")
+                    return
+                }
+                imageRef.downloadURL { (url, error) in
+                    guard let downloadURL = url else {
+                        print("Failed to get url reference for picture \(String(describing: error))")
+                        return
+                    }
+                    self.pubUserDoc.updateData(["pictures": FieldValue.arrayUnion([downloadURL])])
+                }
+            }
+            tasks.append(uploadTask)
+        }
+        return tasks
+    }
+    
+    func getPictures() -> [StorageReference] {
+        //Use firebaseUI when calling this method: https://firebase.google.com/docs/storage/ios/download-files#downloading_images_with_firebaseui
+        var pics: [StorageReference] = []
+        for index in 0...(pubProfile.pictures.count - 1) {
+            pics.append(storageRef.child(user!.uid).child(String(index)))
+        }
+        return pics
+    }
+    
+    func getPictures(otherUserID: String) -> [StorageReference] {
+        //Use firebaseUI when calling this method: https://firebase.google.com/docs/storage/ios/download-files#downloading_images_with_firebaseui
+        var pics: [StorageReference] = []
+        for index in 0...(pubProfile.pictures.count - 1) {
+            pics.append(storageRef.child(otherUserID).child(String(index)))
+        }
+        return pics
+    }
     
     func setBio(bio: String) {
         pubUserDoc.updateData(["bio": bio])

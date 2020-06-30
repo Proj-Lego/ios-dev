@@ -11,6 +11,8 @@ target 'Lego' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
   pod 'FirebaseFirestoreSwift'
+  pod 'FirebaseUI/Storage'
 end
