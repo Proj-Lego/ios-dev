@@ -15,4 +15,6 @@ target 'Lego' do
   pod 'Firebase/Messaging'
   pod 'FirebaseFirestoreSwift'
   pod 'FirebaseUI/Storage'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
 end

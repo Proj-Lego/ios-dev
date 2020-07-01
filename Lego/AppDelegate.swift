@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import FirebaseMessaging
+import GoogleMaps
+import GooglePlaces
 import UserNotifications
 
 @UIApplicationMain
@@ -36,6 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().delegate = self
         application.registerForRemoteNotifications()
         
+        // Google Maps & Places configure
+        GMSServices.provideAPIKey("key1")
+        GMSPlacesClient.provideAPIKey("key2")
+        
+        // Firebase configure
         FirebaseApp.configure()
         return true
     }
