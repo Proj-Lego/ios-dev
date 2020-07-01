@@ -28,6 +28,7 @@
 		C9BFDA61242952E100DF8B2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9BFDA5F242952E100DF8B2F /* Main.storyboard */; };
 		C9BFDA63242952E400DF8B2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9BFDA62242952E400DF8B2F /* Assets.xcassets */; };
 		C9BFDA66242952E400DF8B2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9BFDA64242952E400DF8B2F /* LaunchScreen.storyboard */; };
+		C9D6B3B824AC57B10097478B /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9D6B3B724AC57B10097478B /* Keys.plist */; };
 		C9E4D26124A5D14A00A517D9 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9E4D25F24A5D0C300A517D9 /* SF-Pro-Text-Medium.otf */; };
 		C9E4D26224A5D14D00A517D9 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9E4D26024A5D0F200A517D9 /* SF-Pro-Text-Bold.otf */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,7 @@
 		C9BFDA62242952E400DF8B2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9BFDA65242952E400DF8B2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9BFDA67242952E400DF8B2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9D6B3B724AC57B10097478B /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		C9E4D25F24A5D0C300A517D9 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
 		C9E4D26024A5D0F200A517D9 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
 		F1DEC4B8E9BCD6C64947A321 /* Pods_Lego.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lego.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +184,7 @@
 				C9E4D25E24A5CF2E00A517D9 /* Fonts */,
 				C9BFDA62242952E400DF8B2F /* Assets.xcassets */,
 				C9BFDA67242952E400DF8B2F /* Info.plist */,
+				C9D6B3B724AC57B10097478B /* Keys.plist */,
 				C99DBC2A24298679006BE3DF /* GoogleService-Info.plist */,
 			);
 			path = Lego;
@@ -258,6 +261,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9D6B3B824AC57B10097478B /* Keys.plist in Resources */,
 				C9BFDA66242952E400DF8B2F /* LaunchScreen.storyboard in Resources */,
 				C99DBC2B24298679006BE3DF /* GoogleService-Info.plist in Resources */,
 				C9E4D26224A5D14D00A517D9 /* SF-Pro-Text-Bold.otf in Resources */,
