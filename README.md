@@ -22,7 +22,7 @@ Project Overview > iOS Lego Button > Settings (gear button) > General
 
 Under "Your Apps", download `GoogleService-Info.plist` and drag it directly into `ios-dev/Lego`.
 
-### 4. Create a file called `Keys.plist` and add all API keys.
+#### 4. Create a file called `Keys.plist` and add all API keys.
 
 API keys can be obtained by contacting an administrator.
 
