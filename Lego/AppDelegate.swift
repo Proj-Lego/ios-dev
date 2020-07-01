@@ -21,6 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Handle all initializations requiring API key
+        if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
+            let apiKeys = NSDictionary(contentsOfFile: path)
+            
+            // Google Maps & Places configure
+            GMSServices.provideAPIKey(apiKeys?["GOOGLE_MAPS_API_KEY"] as! String)
+            GMSPlacesClient.provideAPIKey(apiKeys?["GOOGLE_PLACES_API_KEY"] as! String)
+        }
+        
+        // Handle remaining configurations...
+        
         // TODO: Uncomment for push notification support.
         if #available(iOS 10.0, *) {
           // For iOS 10 display notification (sent via APNS)
@@ -38,12 +49,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().delegate = self
         application.registerForRemoteNotifications()
         
-        // Google Maps & Places configure
-        GMSServices.provideAPIKey("key1")
-        GMSPlacesClient.provideAPIKey("key2")
-        
         // Firebase configure
         FirebaseApp.configure()
+        
         return true
     }
 

@@ -26,7 +26,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="zvv-8v-4Ng" kind="show" id="aUI-Od-RWq"/>
+                                    <action selector="phoneBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1eB-1v-hB2"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDy-bJ-qaP">
@@ -101,6 +101,7 @@
                         <outlet property="subLabel" destination="zmU-D4-poL" id="ds1-vj-7j9"/>
                         <outlet property="termsLabel" destination="nKE-NH-RdG" id="s4Q-Sm-upw"/>
                         <outlet property="welcomeLabel" destination="DDy-bJ-qaP" id="MnB-MX-8Px"/>
+                        <segue destination="zvv-8v-4Ng" kind="show" identifier="getStartedToPhoneNumber" id="bSi-Rt-uyB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

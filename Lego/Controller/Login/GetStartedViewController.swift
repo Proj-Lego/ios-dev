@@ -123,4 +123,16 @@ class GetStartedViewController: UIViewController {
 //            }
 //        }
     }
+    
+    @IBAction func phoneBtnPressed(_ sender: UIButton) {
+        // Temporarily commenting typical segue below to test map view
+        // self.performSegue(withIdentifier: "getStartedToPhoneNumber", sender: sender)
+        
+        // Map view testing
+        let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
+        let mapVC = homeStoryboard.instantiateViewController(withIdentifier: "MapViewController")
+//        self.present(mapVC, animated: true)
+        self.show(mapVC, sender: sender)
+    }
+    
 }

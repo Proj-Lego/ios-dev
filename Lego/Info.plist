@@ -83,5 +83,14 @@
 		<string>SF-Pro-Text-Bold.otf</string>
 		<string>SF-Pro-Display-Bold.otf</string>
 	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Lego wants your location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Lego wants your location</string>
 </dict>
 </plist>
