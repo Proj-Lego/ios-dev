@@ -22,6 +22,10 @@ Project Overview > iOS Lego Button > Settings (gear button) > General
 
 Under "Your Apps", download `GoogleService-Info.plist` and drag it directly into `ios-dev/Lego`.
 
-#### 4. Open the file named ```Lego.xcworkspace``` and verify successful setup by running the project.
+#### 4. Create a file called `Keys.plist` and add all API keys.
+
+API keys can be obtained by contacting an administrator.
+
+#### 5. Open the file named ```Lego.xcworkspace``` and verify successful setup by running the project.
 
 Note: You should ALWAYS use the ```Lego.xcworkspace``` file for future development.
