@@ -12,6 +12,7 @@
 		B18ACB93D4A67CF4A56C7D09 /* Pods_Lego.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DEC4B8E9BCD6C64947A321 /* Pods_Lego.framework */; };
 		C913923C24A686A9005188F4 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C913923B24A686A9005188F4 /* Onboarding.storyboard */; };
 		C913923F24A6895B005188F4 /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913923E24A6895B005188F4 /* NameViewController.swift */; };
+		C938ECCA24AD729200F57831 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C938ECC924AD729200F57831 /* AddEventViewController.swift */; };
 		C95D6639242A072000513ED8 /* CountryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95D6638242A072000513ED8 /* CountryTableCell.swift */; };
 		C960CD2424295CD500277A2B /* GetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C960CD2324295CD500277A2B /* GetStartedViewController.swift */; };
 		C960CD2824295EB500277A2B /* PhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C960CD2724295EB500277A2B /* PhoneNumberViewController.swift */; };
@@ -42,6 +43,7 @@
 		6560FD0EDC7575F0051F6622 /* Pods-Lego.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lego.debug.xcconfig"; path = "Target Support Files/Pods-Lego/Pods-Lego.debug.xcconfig"; sourceTree = "<group>"; };
 		C913923B24A686A9005188F4 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		C913923E24A6895B005188F4 /* NameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
+		C938ECC924AD729200F57831 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		C95D6638242A072000513ED8 /* CountryTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableCell.swift; sourceTree = "<group>"; };
 		C960CD2324295CD500277A2B /* GetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedViewController.swift; sourceTree = "<group>"; };
 		C960CD2724295EB500277A2B /* PhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				C9D6B3BC24AC5C660097478B /* MapViewController.swift */,
+				C938ECC924AD729200F57831 /* AddEventViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C960CD3224297E2700277A2B /* LoginSession.swift in Sources */,
+				C938ECCA24AD729200F57831 /* AddEventViewController.swift in Sources */,
 				C960CD2A24295F7E00277A2B /* PhoneVerifyViewController.swift in Sources */,
 				C97F31F92429A660002B1A5A /* ImageHelper.swift in Sources */,
 				C960CD2824295EB500277A2B /* PhoneNumberViewController.swift in Sources */,

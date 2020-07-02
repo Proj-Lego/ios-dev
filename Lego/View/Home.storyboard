@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17132" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17105"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,13 +16,103 @@
                     <view key="view" contentMode="scaleToFill" id="XbD-tz-Y4J">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KxZ-pk-kG3">
+                                <rect key="frame" x="20" y="782" width="70" height="30"/>
+                                <color key="backgroundColor" red="0.094117647060000004" green="0.090196078430000007" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Add Event">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addEventPressed:" destination="MFR-kn-0wf" eventType="touchUpInside" id="Xri-HC-aZh"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="kub-pc-DkG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kub-pc-DkG" firstAttribute="bottom" secondItem="KxZ-pk-kG3" secondAttribute="bottom" constant="50" id="5OU-bb-Ru7"/>
+                            <constraint firstItem="KxZ-pk-kG3" firstAttribute="leading" secondItem="kub-pc-DkG" secondAttribute="leading" constant="20" id="Xdw-aQ-To5"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="eventBtn" destination="KxZ-pk-kG3" id="UOu-Q8-7Xv"/>
+                        <segue destination="xZO-ab-5nT" kind="popoverPresentation" identifier="mapToEventSegue" popoverAnchorView="XbD-tz-Y4J" id="2il-33-1wo">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wfi-v1-rfE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-166" y="-86"/>
+            <point key="canvasLocation" x="-166.66666666666669" y="-86.383928571428569"/>
+        </scene>
+        <!--Add Event View Controller-->
+        <scene sceneID="LjE-6H-Bkv">
+            <objects>
+                <viewController id="xZO-ab-5nT" customClass="AddEventViewController" customModule="Lego" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kxd-ZR-7kl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QqC-Da-yFg">
+                                <rect key="frame" x="20" y="101" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="apg-wo-1eR">
+                                <rect key="frame" x="20" y="155" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTa-R8-GVT">
+                                <rect key="frame" x="20" y="209" width="374" height="39"/>
+                                <color key="backgroundColor" red="0.094117647060000004" green="0.090196078430000007" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitPressed:" destination="xZO-ab-5nT" eventType="touchUpInside" id="Jbg-XD-KEs"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gB5-xU-wPP">
+                                <rect key="frame" x="127" y="30" width="160" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="G63-9h-Uya"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gTa-R8-GVT" firstAttribute="leading" secondItem="G63-9h-Uya" secondAttribute="leading" constant="20" id="3JK-kO-M9g"/>
+                            <constraint firstItem="G63-9h-Uya" firstAttribute="trailing" secondItem="gTa-R8-GVT" secondAttribute="trailing" constant="20" id="AzH-hk-VB0"/>
+                            <constraint firstItem="QqC-Da-yFg" firstAttribute="leading" secondItem="G63-9h-Uya" secondAttribute="leading" constant="20" id="E5C-h7-7FI"/>
+                            <constraint firstItem="gB5-xU-wPP" firstAttribute="centerX" secondItem="Kxd-ZR-7kl" secondAttribute="centerX" id="LVf-Kb-C19"/>
+                            <constraint firstItem="QqC-Da-yFg" firstAttribute="top" secondItem="gB5-xU-wPP" secondAttribute="bottom" constant="20" id="PtO-E9-2o4"/>
+                            <constraint firstItem="G63-9h-Uya" firstAttribute="trailing" secondItem="apg-wo-1eR" secondAttribute="trailing" constant="20" id="Sdf-Ja-tru"/>
+                            <constraint firstItem="gB5-xU-wPP" firstAttribute="top" secondItem="G63-9h-Uya" secondAttribute="top" constant="30" id="e0C-1w-rAT"/>
+                            <constraint firstItem="apg-wo-1eR" firstAttribute="leading" secondItem="G63-9h-Uya" secondAttribute="leading" constant="20" id="lRX-vg-618"/>
+                            <constraint firstItem="G63-9h-Uya" firstAttribute="trailing" secondItem="QqC-Da-yFg" secondAttribute="trailing" constant="20" id="pSa-Xe-qUw"/>
+                            <constraint firstItem="apg-wo-1eR" firstAttribute="top" secondItem="QqC-Da-yFg" secondAttribute="bottom" constant="20" id="ukm-fy-148"/>
+                            <constraint firstItem="gTa-R8-GVT" firstAttribute="top" secondItem="apg-wo-1eR" secondAttribute="bottom" constant="20" id="yxu-Tn-58E"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="eventDescField" destination="apg-wo-1eR" id="FHX-Jy-hwP"/>
+                        <outlet property="eventNameField" destination="apg-wo-1eR" id="zdf-vi-ld1"/>
+                        <outlet property="submitBtn" destination="gTa-R8-GVT" id="Twq-dW-eYE"/>
+                        <outlet property="titleLabel" destination="gB5-xU-wPP" id="3Z3-jG-egW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LxM-Y6-0eK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-167" y="612"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

@@ -11,7 +11,9 @@ import GoogleMaps
 import CoreLocation
 
 class MapViewController: UIViewController {
-
+    
+    @IBOutlet weak var eventBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +31,7 @@ class MapViewController: UIViewController {
         }
         let mapView = GMSMapView.map(withFrame: self.view.frame, camera: camera)
         self.view.addSubview(mapView)
+        self.view.bringSubviewToFront(self.eventBtn)
 
         // Marker boilerplate code.
 //        let marker = GMSMarker()
@@ -38,7 +41,10 @@ class MapViewController: UIViewController {
 //        marker.map = mapView
     }
     
-
+    @IBAction func addEventPressed(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "mapToEventSegue", sender: sender)
+    }
+    
     /*
     // MARK: - Navigation
 
