@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class AddEventViewController: UIViewController {
 
@@ -22,9 +23,12 @@ class AddEventViewController: UIViewController {
     }
     
     @IBAction func submitPressed(_ sender: UIButton) {
-        let eventName = eventNameField.text
-        let eventDesc = eventDescField.text
+        let eventName = eventNameField.text!
+        let eventDesc = eventDescField.text!
         // TODO push strings to firebase (preferably via model)
+        
+        let event = Event(name: eventName, description: eventDesc, location: CLLocation.init(), hostID: "hostID")
+        print(event.getPicture())
         self.dismiss(animated: true, completion: nil)
     }
     

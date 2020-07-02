@@ -13,6 +13,8 @@ struct LegoFSConsts {
     static let usersPrivColl = "users_priv"
     static let usersPubColl = "users_pub"
     static let chatsColl = "chats"
+    static let eventsColl = "events"
+    static let eventsStorage = "events"
 }
 
 struct LegoColorConstants {

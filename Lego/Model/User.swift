@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 import Firebase
 import CoreLocation
 import FirebaseAuth
@@ -20,8 +19,7 @@ struct PrivateProfile : Codable {
     var phoneNumber: String = ""
     var email: String = ""
     var password: String = ""
-    var latitude: Double = 0.0
-    var longitude: Double = 0.0
+    var location: GeoPoint = GeoPoint.init(latitude: 0, longitude: 0)
     var chats: Set<String> = []
     var poiGender: String = ""
     //Any additional user specific features (ie. matchRate, favoriteHosts, etc...)
@@ -60,8 +58,22 @@ class User {
 //        self.loadFromDB() //Include if no listeners are declared to load user data
     }
     
-    func createUser() {
+    func createUser(email: String, password: String, location: CLLocation, poiGender: String, firstname: String, lastname: String, bio: String, dateOfBirth: Date, gender: String) {
         print("creating user...")
+        let geoLoc = GeoPoint.init(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        let privData = PrivateProfile(phoneNumber: user!.phoneNumber!, email: email, password: password, location: geoLoc, poiGender: poiGender)
+        let pubData = PublicProfile(firstname: firstname, lastname: lastname, bio: bio, dateOfBirth: dateOfBirth, gender: gender)
+        do {
+            try privUserDoc.setData(from: privData)
+            try pubUserDoc.setData(from: pubData)
+        } catch {
+            //TODO: throw some exception if JSON encoding failed
+            print(error)
+        }
+    }
+    
+    func createTestUser() {
+        print("creating test user...")
 //        Temp for testing:
         let privData = PrivateProfile(phoneNumber: user!.phoneNumber!)
         let pubData = PublicProfile(firstname: "Abhinav", lastname: "Pottabathula", bio: "myBio", gender: "myGender")
@@ -114,7 +126,9 @@ class User {
         privUserDoc.updateData(["location": GeoPoint.init(latitude: lat, longitude: long)])
     }
     
-    //TODO: getLocation (should call setLocation inside to update firestore)
+    func getLocation() -> (lat: Double, long: Double) {
+        return (privProfile.location.latitude, privProfile.location.longitude)
+    }
     
     func createChat(otherUserID: String) {
         let newChatID: String = getChatIDWith(otherUserID: otherUserID)

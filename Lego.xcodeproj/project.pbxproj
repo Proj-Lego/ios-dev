@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		21145B0F2494A4FB007FEC30 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21145B0E2494A4FB007FEC30 /* User.swift */; };
-		21145B112494A62B007FEC30 /* Host.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21145B102494A62B007FEC30 /* Host.swift */; };
+		21145B112494A62B007FEC30 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21145B102494A62B007FEC30 /* Event.swift */; };
 		B18ACB93D4A67CF4A56C7D09 /* Pods_Lego.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DEC4B8E9BCD6C64947A321 /* Pods_Lego.framework */; };
 		C913923C24A686A9005188F4 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C913923B24A686A9005188F4 /* Onboarding.storyboard */; };
 		C913923F24A6895B005188F4 /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913923E24A6895B005188F4 /* NameViewController.swift */; };
@@ -38,7 +38,7 @@
 
 /* Begin PBXFileReference section */
 		21145B0E2494A4FB007FEC30 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		21145B102494A62B007FEC30 /* Host.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Host.swift; sourceTree = "<group>"; };
+		21145B102494A62B007FEC30 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		2BC3A9757E19AEFAF783CAB9 /* Pods-Lego.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lego.release.xcconfig"; path = "Target Support Files/Pods-Lego/Pods-Lego.release.xcconfig"; sourceTree = "<group>"; };
 		6560FD0EDC7575F0051F6622 /* Pods-Lego.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lego.debug.xcconfig"; path = "Target Support Files/Pods-Lego/Pods-Lego.debug.xcconfig"; sourceTree = "<group>"; };
 		C913923B24A686A9005188F4 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 				C97F31F624298E35002B1A5A /* Constants.swift */,
 				C960CD3124297E2700277A2B /* LoginSession.swift */,
 				21145B0E2494A4FB007FEC30 /* User.swift */,
-				21145B102494A62B007FEC30 /* Host.swift */,
+				21145B102494A62B007FEC30 /* Event.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -362,7 +362,7 @@
 				C960CD2A24295F7E00277A2B /* PhoneVerifyViewController.swift in Sources */,
 				C97F31F92429A660002B1A5A /* ImageHelper.swift in Sources */,
 				C960CD2824295EB500277A2B /* PhoneNumberViewController.swift in Sources */,
-				21145B112494A62B007FEC30 /* Host.swift in Sources */,
+				21145B112494A62B007FEC30 /* Event.swift in Sources */,
 				C960CD2424295CD500277A2B /* GetStartedViewController.swift in Sources */,
 				C9BFDA5A242952E100DF8B2F /* AppDelegate.swift in Sources */,
 				C9BFDA5C242952E100DF8B2F /* SceneDelegate.swift in Sources */,
