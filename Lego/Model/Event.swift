@@ -13,8 +13,6 @@ import FirebaseAuth
 import FirebaseFirestoreSwift
 import FirebaseStorage
 
-var events: [EventInfo] = []
-
 struct EventInfo: Codable {
     @DocumentID var id: String? = UUID().uuidString
     var name : String = ""
@@ -130,52 +128,4 @@ class Event {
     func getHostID() -> String {
         return eventInfo.hostID
     }
-}
-
-func getEventsNearBy(location: CLLocationCoordinate2D) {
-    getEventsNearBy(latitude: location.latitude, longitude: location.longitude, distance: 60)
-}
-
-func getEventsNearBy(latitude: Double, longitude: Double, distance: Double) {
-    // ~1 mile of lat and lon in degrees
-    let lat = 0.0144927536231884
-    let lon = 0.0181818181818182
-
-    let lowerLat = latitude - (lat * distance)
-    let lowerLon = longitude - (lon * distance)
-
-    let greaterLat = latitude + (lat * distance)
-    let greaterLon = longitude + (lon * distance)
-
-    let lesserGeopoint = GeoPoint(latitude: lowerLat, longitude: lowerLon)
-    let greaterGeopoint = GeoPoint(latitude: greaterLat, longitude: greaterLon)
-
-    let docRef = Firestore.firestore().collection(LegoFSConsts.eventsColl)
-    let query = docRef.whereField("location", isGreaterThan: lesserGeopoint).whereField("location", isLessThan: greaterGeopoint)
-    
-    var nearbyEvents: [EventInfo] = []
-    
-    query.addSnapshotListener { snapshot, error in
-        if let error = error {
-            print("Error getting event documents: \(error)")
-        } else {
-            for document in snapshot!.documents {
-                let result = Result {
-                    try document.data(as: EventInfo.self)
-                }
-                switch result {
-                case .success(let data):
-                    if let data = data {
-                        nearbyEvents.append(data)
-                    } else {
-                        print("Document does not exist, got nil DocumentSnapshot")
-                    }
-                case .failure(let error):
-                    print("Error decoding UserPrivate: \(error)")
-                }
-                print("\(document.documentID) => \(document.data())")
-            }
-        }
-    }
-    events = nearbyEvents
 }

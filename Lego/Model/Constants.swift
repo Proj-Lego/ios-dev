@@ -32,6 +32,10 @@ struct LegoColorConstants {
     static let subButtonColor = UIColor(red: 0.223, green: 0.199, blue: 0.258, alpha: 1)
 }
 
+struct LegoMapConstants {
+    static let markerSize = 30
+}
+
 struct LegoFonts {
     static let SFProTextBold = UIFont(name: "SF-Pro-Text-Bold", size: 17)
     static let SFProTextMedium = UIFont(name: "SF-Pro-Text-Medium", size: 17)
