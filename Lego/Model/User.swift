@@ -35,6 +35,7 @@ struct PublicProfile : Codable {
     var bio: String = ""
     var dateOfBirth: Date = Date.init()
     var gender: String = ""
+    var isVerified: Bool = false
 }
 
 
@@ -268,6 +269,14 @@ class User {
     
     func getGender() -> String {
         return pubProfile.gender
+    }
+    
+    func setVerified(isVerified: Bool) {
+        pubUserDoc.updateData(["isVerified": isVerified])
+    }
+    
+    func getVerified() -> Bool {
+        return pubProfile.isVerified
     }
     
     func loadFromDB() {

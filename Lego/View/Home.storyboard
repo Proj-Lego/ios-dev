@@ -62,8 +62,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gB5-xU-wPP">
+                                <rect key="frame" x="127" y="30" width="160" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gmV-zB-lI8" userLabel="Event Location Field">
+                                <rect key="frame" x="20" y="209" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTa-R8-GVT">
-                                <rect key="frame" x="20" y="209" width="374" height="39"/>
+                                <rect key="frame" x="20" y="263" width="374" height="39"/>
                                 <color key="backgroundColor" red="0.094117647060000004" green="0.090196078430000007" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Submit">
@@ -73,12 +84,6 @@
                                     <action selector="submitPressed:" destination="xZO-ab-5nT" eventType="touchUpInside" id="Jbg-XD-KEs"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gB5-xU-wPP">
-                                <rect key="frame" x="127" y="30" width="160" height="51"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -86,18 +91,22 @@
                             <constraint firstItem="G63-9h-Uya" firstAttribute="trailing" secondItem="gTa-R8-GVT" secondAttribute="trailing" constant="20" id="AzH-hk-VB0"/>
                             <constraint firstItem="QqC-Da-yFg" firstAttribute="leading" secondItem="G63-9h-Uya" secondAttribute="leading" constant="20" id="E5C-h7-7FI"/>
                             <constraint firstItem="gB5-xU-wPP" firstAttribute="centerX" secondItem="Kxd-ZR-7kl" secondAttribute="centerX" id="LVf-Kb-C19"/>
+                            <constraint firstItem="gmV-zB-lI8" firstAttribute="leading" secondItem="G63-9h-Uya" secondAttribute="leading" constant="20" id="MtG-Ww-K5r"/>
                             <constraint firstItem="QqC-Da-yFg" firstAttribute="top" secondItem="gB5-xU-wPP" secondAttribute="bottom" constant="20" id="PtO-E9-2o4"/>
                             <constraint firstItem="G63-9h-Uya" firstAttribute="trailing" secondItem="apg-wo-1eR" secondAttribute="trailing" constant="20" id="Sdf-Ja-tru"/>
+                            <constraint firstItem="gmV-zB-lI8" firstAttribute="top" secondItem="apg-wo-1eR" secondAttribute="bottom" constant="20" id="c7k-F1-ZWY"/>
+                            <constraint firstItem="G63-9h-Uya" firstAttribute="trailing" secondItem="gmV-zB-lI8" secondAttribute="trailing" constant="20" id="deU-2s-Vi5"/>
                             <constraint firstItem="gB5-xU-wPP" firstAttribute="top" secondItem="G63-9h-Uya" secondAttribute="top" constant="30" id="e0C-1w-rAT"/>
                             <constraint firstItem="apg-wo-1eR" firstAttribute="leading" secondItem="G63-9h-Uya" secondAttribute="leading" constant="20" id="lRX-vg-618"/>
                             <constraint firstItem="G63-9h-Uya" firstAttribute="trailing" secondItem="QqC-Da-yFg" secondAttribute="trailing" constant="20" id="pSa-Xe-qUw"/>
                             <constraint firstItem="apg-wo-1eR" firstAttribute="top" secondItem="QqC-Da-yFg" secondAttribute="bottom" constant="20" id="ukm-fy-148"/>
-                            <constraint firstItem="gTa-R8-GVT" firstAttribute="top" secondItem="apg-wo-1eR" secondAttribute="bottom" constant="20" id="yxu-Tn-58E"/>
+                            <constraint firstItem="gTa-R8-GVT" firstAttribute="top" secondItem="gmV-zB-lI8" secondAttribute="bottom" constant="20" id="vzo-G9-qst"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="G63-9h-Uya"/>
                     </view>
                     <connections>
                         <outlet property="eventDescField" destination="apg-wo-1eR" id="FHX-Jy-hwP"/>
+                        <outlet property="eventLocationField" destination="gmV-zB-lI8" id="xT2-QG-yXe"/>
                         <outlet property="eventNameField" destination="QqC-Da-yFg" id="XCN-sE-6Ef"/>
                         <outlet property="submitBtn" destination="gTa-R8-GVT" id="Twq-dW-eYE"/>
                         <outlet property="titleLabel" destination="gB5-xU-wPP" id="3Z3-jG-egW"/>
@@ -105,7 +114,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LxM-Y6-0eK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-167" y="612"/>
+            <point key="canvasLocation" x="-168.11594202898553" y="611.38392857142856"/>
         </scene>
     </scenes>
 </document>
