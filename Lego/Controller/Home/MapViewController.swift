@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import GoogleMaps
 import CoreLocation
+import FirebaseStorage
 
 class MapViewController: UIViewController {
     
@@ -19,7 +20,7 @@ class MapViewController: UIViewController {
     var mapView: GMSMapView!
     var zoomLevel: Float = 15.0
 
-    var events: [EventInfo] = []
+    var events: [Event] = []
 
     // A default location to use when location permission is not granted.
     let defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
@@ -53,61 +54,6 @@ class MapViewController: UIViewController {
         mapView.isHidden = true
     }
     
-
-    func getEventsNearBy(location: CLLocationCoordinate2D) {
-        getEventsNearBy(latitude: location.latitude, longitude: location.longitude, distance: 60)
-    }
-
-    func getEventsNearBy(latitude: Double, longitude: Double, distance: Double) {
-        // ~1 mile of lat and lon in degrees
-        let lat = 0.0144927536231884
-        let lon = 0.0181818181818182
-
-        let lowerLat = latitude - (lat * distance)
-        let lowerLon = longitude - (lon * distance)
-
-        let greaterLat = latitude + (lat * distance)
-        let greaterLon = longitude + (lon * distance)
-
-        let lesserGeopoint = GeoPoint(latitude: lowerLat, longitude: lowerLon)
-        let greaterGeopoint = GeoPoint(latitude: greaterLat, longitude: greaterLon)
-
-        let docRef = Firestore.firestore().collection(LegoFSConsts.eventsColl)
-        let query = docRef.whereField("location", isGreaterThan: lesserGeopoint).whereField("location", isLessThan: greaterGeopoint)
-        
-        var nearbyEvents: [EventInfo] = []
-        
-        query.addSnapshotListener { snapshot, error in
-            if let error = error {
-                print("Error getting event documents: \(error)")
-            } else {
-                for document in snapshot!.documents {
-                    let result = Result {
-                        try document.data(as: EventInfo.self)
-                    }
-                    switch result {
-                    case .success(let data):
-                        if let data = data {
-                            nearbyEvents.append(data)
-                            let markerLoc = CLLocationCoordinate2D.init(latitude: data.location.latitude, longitude: data.location.longitude)
-                            let iconData = try? Data(contentsOf: data.picture)
-                            let icon = UIImage(data: iconData!)!.resizeImage(targetSize: CGSize(width: LegoMapConstants.markerSize, height: LegoMapConstants.markerSize))
-                            self.addMarker(title: data.name, description: data.description, location: markerLoc, icon: icon)
-                            
-                        } else {
-                            print("Document does not exist, got nil DocumentSnapshot")
-                        }
-                    case .failure(let error):
-                        print("Error decoding UserPrivate: \(error)")
-                    }
-                    print("\(document.documentID) => \(document.data())")
-                }
-            }
-        }
-        events = nearbyEvents
-    }
-    
-    
     private func addMarker(title: String, description: String, location: CLLocationCoordinate2D, icon: UIImage?) {
         let marker = GMSMarker()
         marker.position = location
@@ -115,6 +61,16 @@ class MapViewController: UIViewController {
         marker.snippet = description
         marker.icon = icon
         marker.map = mapView
+    }
+    
+    private func updateMarker() {
+        //TODO: if user edits the event this must be updated
+        //if !self.events.contains(event) {}
+    }
+    
+    private func removeMarker() {
+        //TODO: if user removes the event this must be updated
+        //if !self.events.contains(event) {}
     }
     
     @IBAction func addEventPressed(_ sender: UIButton) {
@@ -141,7 +97,20 @@ extension MapViewController: CLLocationManagerDelegate {
         let camera = GMSCameraPosition.camera(withLatitude: currentLocation!.coordinate.latitude,
                                               longitude: currentLocation!.coordinate.longitude,
                                                 zoom: zoomLevel)
-        getEventsNearBy(location: currentLocation!.coordinate)
+        
+        listenToNearbyEvents(location: currentLocation!.coordinate) { event, error in
+            
+            if error != nil {
+                //TODO: Show some alert!
+                print("Failed to get nearby events \(String(describing: error))")
+                return
+            }
+            let markerLoc = CLLocationCoordinate2D.init(latitude: event.eventInfo.location.latitude, longitude: event.eventInfo.location.longitude)
+            let icon = event.getPicture().resizeImage(targetSize: CGSize(width: LegoMapConstants.markerSize, height: LegoMapConstants.markerSize))
+            self.addMarker(title: event.eventInfo.name, description: event.eventInfo.description, location: markerLoc, icon: icon)
+            self.events.append(event)
+        }
+        
         if mapView.isHidden {
             mapView.isHidden = false
             mapView.camera = camera

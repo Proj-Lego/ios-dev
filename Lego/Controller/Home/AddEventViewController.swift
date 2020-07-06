@@ -29,7 +29,7 @@ class AddEventViewController: UIViewController {
     @IBAction func submitPressed(_ sender: UIButton) {
         let eventName = eventNameField.text!
         let eventDesc = eventDescField.text!
-        let event = Event(name: eventName, description: eventDesc, location: curLoc, hostID: "hostID")
+        let event = Event(name: eventName, picture: nil, description: eventDesc, location: curLoc, hostID: "hostID")
         print(event.getPicture())
         self.dismiss(animated: true, completion: nil)
     }
