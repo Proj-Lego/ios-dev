@@ -21,6 +21,7 @@ class MapViewController: UIViewController {
     var zoomLevel: Float = 15.0
 
     var events: [Event] = []
+    var eventMarkerDict: [String: GMSMarker] = [:]
 
     // A default location to use when location permission is not granted.
     let defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
@@ -54,23 +55,22 @@ class MapViewController: UIViewController {
         mapView.isHidden = true
     }
     
-    private func addMarker(title: String, description: String, location: CLLocationCoordinate2D, icon: UIImage?) {
-        let marker = GMSMarker()
-        marker.position = location
-        marker.title = title
-        marker.snippet = description
-        marker.icon = icon
-        marker.map = mapView
+    private func addMarker(eventID: String, title: String, description: String, location: CLLocationCoordinate2D, icon: UIImage?) {
+        var marker = eventMarkerDict[eventID]
+        if marker == nil {
+            marker = GMSMarker()
+            eventMarkerDict[eventID] = marker
+        }
+        marker!.position = location
+        marker!.title = title
+        marker!.snippet = description
+        marker!.icon = icon
+        marker!.map = mapView
     }
     
-    private func updateMarker() {
-        //TODO: if user edits the event this must be updated
-        //if !self.events.contains(event) {}
-    }
-    
-    private func removeMarker() {
-        //TODO: if user removes the event this must be updated
-        //if !self.events.contains(event) {}
+    private func removeMarker(eventID: String) {
+        let marker = eventMarkerDict[eventID]
+        marker?.map = nil
     }
     
     @IBAction func addEventPressed(_ sender: UIButton) {
@@ -107,7 +107,9 @@ extension MapViewController: CLLocationManagerDelegate {
             }
             let markerLoc = CLLocationCoordinate2D.init(latitude: event.eventInfo.location.latitude, longitude: event.eventInfo.location.longitude)
             let icon = event.getPicture().resizeImage(targetSize: CGSize(width: LegoMapConstants.markerSize, height: LegoMapConstants.markerSize))
-            self.addMarker(title: event.eventInfo.name, description: event.eventInfo.description, location: markerLoc, icon: icon)
+            
+            
+            self.addMarker(eventID: event.eventDoc.documentID, title: event.eventInfo.name, description: event.eventInfo.description, location: markerLoc, icon: icon)
             self.events.append(event)
         }
         

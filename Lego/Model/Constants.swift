@@ -15,6 +15,7 @@ struct LegoFSConsts {
     static let chatsColl = "chats"
     static let eventsColl = "events"
     static let eventsStorage = "events"
+    static let imageSizeLimit = Int64.max
 }
 
 struct LegoColorConstants {
@@ -34,6 +35,7 @@ struct LegoColorConstants {
 
 struct LegoMapConstants {
     static let markerSize = 30
+    static let nearbyEventsRadius: Double = 60
 }
 
 struct LegoFonts {

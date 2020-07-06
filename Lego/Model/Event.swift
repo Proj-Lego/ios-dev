@@ -89,7 +89,7 @@ class Event: Equatable {
     }
     
     private static func loadImageFromRef(ref: StorageReference, completion: @escaping (UIImage, Error?) -> Void) {
-        ref.getData(maxSize: Int64.max) { data, error in
+        ref.getData(maxSize: LegoFSConsts.imageSizeLimit) { data, error in
             if let error = error {
                 completion(UIImage(), error)
             } else {
@@ -152,7 +152,7 @@ class Event: Equatable {
 }
 
 func listenToNearbyEvents(location: CLLocationCoordinate2D, completion: @escaping (Event, Error?) -> Void) {
-    listenToNearbyEvents(latitude: location.latitude, longitude: location.longitude, distance: 60, completion: completion)
+    listenToNearbyEvents(latitude: location.latitude, longitude: location.longitude, distance: LegoMapConstants.nearbyEventsRadius, completion: completion)
 }
 
 func listenToNearbyEvents(latitude: Double, longitude: Double, distance: Double, completion: @escaping (Event, Error?) -> Void) {
