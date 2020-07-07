@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17132" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17105"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Map View Controller-->
+        <!--Map-->
         <scene sceneID="uzs-8H-kZO">
             <objects>
-                <viewController storyboardIdentifier="MapViewController" id="MFR-kn-0wf" customClass="MapViewController" customModule="Lego" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController1" id="MFR-kn-0wf" customClass="MapViewController" customModule="Lego" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XbD-tz-Y4J">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KxZ-pk-kG3">
-                                <rect key="frame" x="20" y="782" width="70" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KxZ-pk-kG3">
+                                <rect key="frame" x="20" y="713" width="50" height="50"/>
                                 <color key="backgroundColor" red="0.094117647060000004" green="0.090196078430000007" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Add Event">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="keA-oT-rbD"/>
+                                    <constraint firstAttribute="width" secondItem="KxZ-pk-kG3" secondAttribute="height" multiplier="1:1" id="mch-jK-QlR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="+">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -26,13 +33,14 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="kub-pc-DkG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="kub-pc-DkG" firstAttribute="bottom" secondItem="KxZ-pk-kG3" secondAttribute="bottom" constant="50" id="5OU-bb-Ru7"/>
                             <constraint firstItem="KxZ-pk-kG3" firstAttribute="leading" secondItem="kub-pc-DkG" secondAttribute="leading" constant="20" id="Xdw-aQ-To5"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="kub-pc-DkG"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="mMf-5Z-6IK"/>
                     <connections>
                         <outlet property="eventBtn" destination="KxZ-pk-kG3" id="UOu-Q8-7Xv"/>
                         <segue destination="xZO-ab-5nT" kind="popoverPresentation" identifier="mapToEventSegue" popoverAnchorView="XbD-tz-Y4J" id="2il-33-1wo">
@@ -42,7 +50,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wfi-v1-rfE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-166.66666666666669" y="-86.383928571428569"/>
+            <point key="canvasLocation" x="743.47826086956525" y="-86.383928571428569"/>
         </scene>
         <!--Add Event View Controller-->
         <scene sceneID="LjE-6H-Bkv">
@@ -73,7 +81,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTa-R8-GVT">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTa-R8-GVT">
                                 <rect key="frame" x="20" y="263" width="374" height="39"/>
                                 <color key="backgroundColor" red="0.094117647060000004" green="0.090196078430000007" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -85,7 +93,8 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="G63-9h-Uya"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="gTa-R8-GVT" firstAttribute="leading" secondItem="G63-9h-Uya" secondAttribute="leading" constant="20" id="3JK-kO-M9g"/>
                             <constraint firstItem="G63-9h-Uya" firstAttribute="trailing" secondItem="gTa-R8-GVT" secondAttribute="trailing" constant="20" id="AzH-hk-VB0"/>
@@ -102,7 +111,6 @@
                             <constraint firstItem="apg-wo-1eR" firstAttribute="top" secondItem="QqC-Da-yFg" secondAttribute="bottom" constant="20" id="ukm-fy-148"/>
                             <constraint firstItem="gTa-R8-GVT" firstAttribute="top" secondItem="gmV-zB-lI8" secondAttribute="bottom" constant="20" id="vzo-G9-qst"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="G63-9h-Uya"/>
                     </view>
                     <connections>
                         <outlet property="eventDescField" destination="apg-wo-1eR" id="FHX-Jy-hwP"/>
@@ -116,5 +124,28 @@
             </objects>
             <point key="canvasLocation" x="-168.11594202898553" y="611.38392857142856"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="QVS-pT-nQ2">
+            <objects>
+                <tabBarController storyboardIdentifier="MapViewController" automaticallyAdjustsScrollViewInsets="NO" id="5SI-SL-KTV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LBc-iP-aX2">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="MFR-kn-0wf" kind="relationship" relationship="viewControllers" id="1pc-hU-XGG"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rtn-1a-Fhf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-166.66666666666669" y="-86.383928571428569"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="map" catalog="system" width="128" height="110"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

@@ -28,6 +28,15 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Configure UI Elements
+        eventBtn.setTitle("+", for: .normal)
+        eventBtn.titleLabel?.font = LegoFonts.SFProTextMedium
+        eventBtn.titleLabel?.font = eventBtn.titleLabel?.font.withSize(32)
+        eventBtn.titleLabel?.baselineAdjustment = .alignCenters
+        eventBtn.backgroundColor = LegoColorConstants.purple
+        eventBtn.layer.cornerRadius = eventBtn.frame.height / 2
+
         setupMapView()
     }
     
