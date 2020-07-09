@@ -52,6 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Firebase configure
         FirebaseApp.configure()
         
+        if Auth.auth().currentUser != nil {
+            user = User()
+        }
+        
         return true
     }
 

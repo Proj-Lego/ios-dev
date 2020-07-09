@@ -12,7 +12,7 @@
         <!--Map-->
         <scene sceneID="uzs-8H-kZO">
             <objects>
-                <viewController storyboardIdentifier="MapViewController1" id="MFR-kn-0wf" customClass="MapViewController" customModule="Lego" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="MFR-kn-0wf" customClass="MapViewController" customModule="Lego" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XbD-tz-Y4J">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -127,9 +127,10 @@
         <!--Tab Bar Controller-->
         <scene sceneID="QVS-pT-nQ2">
             <objects>
-                <tabBarController storyboardIdentifier="MapViewController" automaticallyAdjustsScrollViewInsets="NO" id="5SI-SL-KTV" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeTabBarViewController" automaticallyAdjustsScrollViewInsets="NO" id="5SI-SL-KTV" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LBc-iP-aX2">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

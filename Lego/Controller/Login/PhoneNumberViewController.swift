@@ -30,12 +30,12 @@ class PhoneNumberViewController: UIViewController {
         phoneNumberTxtField.layer.cornerRadius = phoneNumberTxtField.frame.height / 2
         phoneNumberTxtField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         
-        session.setDefaultCountry()
+        loginSession.setDefaultCountry()
         countryCodeBtn.clipsToBounds = true
         countryCodeBtn.layer.cornerRadius = countryCodeBtn.frame.height / 2
         countryCodeBtn.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
         countryCodeBtn.setTitleColor(LegoColorConstants.black, for: .normal)
-        countryCodeBtn.setTitle(session.getCountryCodeString(withFlag: true), for: .normal)
+        countryCodeBtn.setTitle(loginSession.getCountryCodeString(withFlag: true), for: .normal)
         countryCodeBtn.titleLabel?.font = LegoFonts.SFProTextMedium
         countryCodeBtn.titleLabel?.font = countryCodeBtn.titleLabel?.font.withSize(17)
         
@@ -57,9 +57,9 @@ class PhoneNumberViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let verifyController = segue.destination as? PhoneVerifyViewController
         let (_, phoneTxt) = extractPhoneInfo()
-        let newPhoneTxt = session.cleanAndGeneratePhoneString(phone: phoneTxt)
+        let newPhoneTxt = loginSession.cleanAndGeneratePhoneString(phone: phoneTxt)
         verifyController?.phoneTxt = newPhoneTxt
-        verifyController?.phoneNumber = session.getCountryCodeString(withFlag: false) + " " + session.cleanAndGeneratePhoneString(phone: newPhoneTxt)
+        verifyController?.phoneNumber = loginSession.getCountryCodeString(withFlag: false) + " " + loginSession.cleanAndGeneratePhoneString(phone: newPhoneTxt)
         
     }
     
@@ -72,8 +72,8 @@ class PhoneNumberViewController: UIViewController {
     
     @IBAction func phoneNumberChanged(_ sender: UITextField) {
         let (_, phoneTxt) = extractPhoneInfo()
-        phoneNumberTxtField.text = session.cleanAndGeneratePhoneString(phone: phoneTxt)
-        if session.phoneIsValid(phone: phoneNumberTxtField.text!) {
+        phoneNumberTxtField.text = loginSession.cleanAndGeneratePhoneString(phone: phoneTxt)
+        if loginSession.phoneIsValid(phone: phoneNumberTxtField.text!) {
             nextBtn.isHidden = false
         } else {
             nextBtn.isHidden = true
@@ -82,7 +82,7 @@ class PhoneNumberViewController: UIViewController {
     
     @IBAction func nextPressed(_ sender: UIButton) {
         let (countryCode, phoneTxt) = extractPhoneInfo()
-        session.processPhoneNumber(countryCode: countryCode, phone: phoneTxt) { (success, errMsg) in
+        loginSession.processPhoneNumber(countryCode: countryCode, phone: phoneTxt) { (success, errMsg) in
             if !success {
                 let alertController = UIAlertController(title: "Oops!", message: errMsg, preferredStyle: .alert)
                 let action = UIAlertAction(title: "Dismiss", style: .default) { (action) in
@@ -107,11 +107,11 @@ class PhoneNumberViewController: UIViewController {
 extension PhoneNumberViewController: SelectCountryDelegate {
     func changeCountry(country: Country) {
         self.dismiss(animated: true) {
-            session.country = country
-            self.countryCodeBtn.setTitle(session.getCountryCodeString(withFlag: true), for: .normal)
+            loginSession.country = country
+            self.countryCodeBtn.setTitle(loginSession.getCountryCodeString(withFlag: true), for: .normal)
             let (_, phoneTxt) = self.extractPhoneInfo()
-            self.phoneNumberTxtField.text = session.cleanAndGeneratePhoneString(phone: phoneTxt)
-            if session.phoneIsValid(phone: self.phoneNumberTxtField.text!) {
+            self.phoneNumberTxtField.text = loginSession.cleanAndGeneratePhoneString(phone: phoneTxt)
+            if loginSession.phoneIsValid(phone: self.phoneNumberTxtField.text!) {
                 self.nextBtn.isHidden = false
             } else {
                 self.nextBtn.isHidden = true

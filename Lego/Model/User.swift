@@ -13,6 +13,8 @@ import FirebaseAuth
 import FirebaseFirestoreSwift
 import FirebaseStorage
 
+var user: User!
+
 //users is a top level collection of UserPrivate documents
 struct PrivateProfile : Codable {
     @DocumentID var id: String? = UUID().uuidString
@@ -41,7 +43,7 @@ struct PublicProfile : Codable {
 
 class User {
     let db = Firestore.firestore()
-    let user = Auth.auth().currentUser
+    let currentUser = Auth.auth().currentUser
     var privUserDoc: DocumentReference
     var pubUserDoc: DocumentReference
     let storageRef: StorageReference
@@ -49,12 +51,8 @@ class User {
     var pubProfile = PublicProfile()
     
     init() {
-        if (user == nil) {
-            print("no user")
-            //TODO: navigate to signin/signup
-        }
-        privUserDoc = db.collection(LegoFSConsts.usersPrivColl).document(user!.uid)
-        pubUserDoc = privUserDoc.collection(LegoFSConsts.usersPubColl).document(user!.uid)
+        privUserDoc = db.collection(LegoFSConsts.usersPrivColl).document(currentUser!.uid)
+        pubUserDoc = privUserDoc.collection(LegoFSConsts.usersPubColl).document(currentUser!.uid)
         storageRef = Storage.storage().reference()
 //        self.loadFromDB() //Include if no listeners are declared to load user data
     }
@@ -62,7 +60,7 @@ class User {
     func createUser(email: String, password: String, location: CLLocation, poiGender: String, firstname: String, lastname: String, bio: String, dateOfBirth: Date, gender: String) {
         print("creating user...")
         let geoLoc = GeoPoint.init(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let privData = PrivateProfile(phoneNumber: user!.phoneNumber!, email: email, password: password, location: geoLoc, poiGender: poiGender)
+        let privData = PrivateProfile(phoneNumber: currentUser!.phoneNumber!, email: email, password: password, location: geoLoc, poiGender: poiGender)
         let pubData = PublicProfile(firstname: firstname, lastname: lastname, bio: bio, dateOfBirth: dateOfBirth, gender: gender)
         do {
             try privUserDoc.setData(from: privData)
@@ -76,7 +74,7 @@ class User {
     func createTestUser() {
         print("creating test user...")
 //        Temp for testing:
-        let privData = PrivateProfile(phoneNumber: user!.phoneNumber!)
+        let privData = PrivateProfile(phoneNumber: currentUser!.phoneNumber!)
         let pubData = PublicProfile(firstname: "Abhinav", lastname: "Pottabathula", bio: "myBio", gender: "myGender")
         do {
             try privUserDoc.setData(from: privData)
@@ -91,7 +89,7 @@ class User {
     //TODO: Consolidate set operations into a single write request based on Views
     func setEmail(email: String) {
         self.reauthorizePopUp()
-        user?.updateEmail(to: email) { (error) in
+        currentUser?.updateEmail(to: email) { (error) in
             if error != nil {
                 print("Failed to update email: \(String(describing: error))")
                 return
@@ -101,12 +99,12 @@ class User {
     }
     
     func getEmail() -> String {
-        return (user?.email)!
+        return (currentUser?.email)!
     }
     
     func setPassword(pass: String) {
         self.reauthorizePopUp()
-        user?.updatePassword(to: pass) { (error) in
+        currentUser?.updatePassword(to: pass) { (error) in
             if error != nil {
                 print("Failed to update password: \(String(describing: error))")
                 return
@@ -141,15 +139,15 @@ class User {
     
     func sendMessageTo(otherUserID: String, message: String) {
         let chatID: String = getChatIDWith(otherUserID: otherUserID)
-        db.collection(LegoFSConsts.chatsColl).document(chatID).updateData(["messages": FieldValue.arrayUnion([["timestamp": Timestamp(date: Date()), "senderID": user!.uid, "message": message]])])
+        db.collection(LegoFSConsts.chatsColl).document(chatID).updateData(["messages": FieldValue.arrayUnion([["timestamp": Timestamp(date: Date()), "senderID": currentUser!.uid, "message": message]])])
         //TODO: Write a cloud function to send otherUser a push notification
     }
     
     func getChatIDWith(otherUserID: String) -> String {
-        if user!.uid > otherUserID {
-            return user!.uid + otherUserID
+        if currentUser!.uid > otherUserID {
+            return currentUser!.uid + otherUserID
         } else {
-            return otherUserID + user!.uid
+            return otherUserID + currentUser!.uid
         }
     }
     
@@ -182,7 +180,7 @@ class User {
     }
     
     func setProfPic(pic: URL) -> StorageUploadTask {
-        let imageRef = storageRef.child(user!.uid).child("prof_pic")
+        let imageRef = storageRef.child(currentUser!.uid).child("prof_pic")
         let uploadTask = imageRef.putFile(from: pic, metadata: nil) { metadata, error in
             if error != nil {
                 print("Failed to upload profile picture \(String(describing: error))")
@@ -200,7 +198,7 @@ class User {
     }
     
     func getProfPic() -> StorageReference {
-        return storageRef.child(user!.uid).child("prof_pic")
+        return storageRef.child(currentUser!.uid).child("prof_pic")
     }
     
     func getProfPic(otherUserID: String) -> StorageReference {
@@ -210,7 +208,7 @@ class User {
     func setPictures(pics: [URL]) -> [StorageUploadTask] {
         var tasks: [StorageUploadTask] = []
         for index in 0...(pics.count - 1) {
-            let imageRef = storageRef.child(user!.uid).child(String(index))
+            let imageRef = storageRef.child(currentUser!.uid).child(String(index))
             let uploadTask = imageRef.putFile(from: pics[index], metadata: nil) { metadata, error in
                 if error != nil {
                     print("Failed to upload picture \(String(describing: error))")
@@ -233,7 +231,7 @@ class User {
         //Use firebaseUI when calling this method: https://firebase.google.com/docs/storage/ios/download-files#downloading_images_with_firebaseui
         var pics: [StorageReference] = []
         for index in 0...(pubProfile.pictures.count - 1) {
-            pics.append(storageRef.child(user!.uid).child(String(index)))
+            pics.append(storageRef.child(currentUser!.uid).child(String(index)))
         }
         return pics
     }

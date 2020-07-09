@@ -48,9 +48,9 @@ class PhoneVerifyViewController: UIViewController {
     
     @IBAction func otpEdited(_ sender: UITextField) {
         guard let numsTxt = otpTxtField.text else { return }
-        otpTxtField.text = session.getCleanOTP(from: numsTxt)
-        otpLabel.text = session.generateOTPString(from: otpTxtField.text!)
-        if session.otpIsValid(otp: otpTxtField.text!) {
+        otpTxtField.text = loginSession.getCleanOTP(from: numsTxt)
+        otpLabel.text = loginSession.generateOTPString(from: otpTxtField.text!)
+        if loginSession.otpIsValid(otp: otpTxtField.text!) {
             nextBtn.isHidden = false
         } else {
             nextBtn.isHidden = true
@@ -58,7 +58,7 @@ class PhoneVerifyViewController: UIViewController {
     }
     
     @IBAction func resendCode(_ sender: UIButton) {
-        session.processPhoneNumber(countryCode: session.getCountryCodeString(withFlag: false), phone: phoneTxt) { (success, errMsg) in
+        loginSession.processPhoneNumber(countryCode: loginSession.getCountryCodeString(withFlag: false), phone: phoneTxt) { (success, errMsg) in
             var alertTxt = "Hang tight!"
             var errTxt = "We have resent the verification code"
             if !success {
@@ -77,7 +77,7 @@ class PhoneVerifyViewController: UIViewController {
     
     @IBAction func nextPressed(_ sender: Any) {
         guard let numsTxt = otpTxtField.text else { return }
-        session.processOTP(otp: numsTxt) { (success, errMsg) in
+        loginSession.processOTP(otp: numsTxt) { (success, errMsg) in
             // TODO segue to home screen...
             var title = "Success"
             if !success {

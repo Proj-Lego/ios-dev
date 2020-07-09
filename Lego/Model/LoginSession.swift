@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import PhoneNumberKit
 
-var session = LoginSession()
+var loginSession = LoginSession()
 
 struct Country {
     var name: String!
@@ -52,9 +52,9 @@ class LoginSession {
     
     func getCountryCodeString(withFlag: Bool) -> String {
         if withFlag {
-            return session.country.flag + " +" + String(session.country.code)
+            return loginSession.country.flag + " +" + String(loginSession.country.code)
         } else {
-            return "+" + String(session.country.code)
+            return "+" + String(loginSession.country.code)
         }
     }
     

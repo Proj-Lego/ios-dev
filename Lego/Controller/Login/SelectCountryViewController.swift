@@ -34,12 +34,12 @@ class SelectCountryViewController: UIViewController {
 
 extension SelectCountryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        session.countries.count
+        loginSession.countries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let index = indexPath.item
-        let country = session.countries[index]
+        let country = loginSession.countries[index]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "countryCell", for: indexPath) as? CountryTableCell {
             cell.flagLabel.text = country.flag
             cell.countryLabel.text = country.name + " (+\(country.code ?? 0))"
@@ -50,7 +50,7 @@ extension SelectCountryViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let chosenCountry = session.countries[indexPath.item]
+        let chosenCountry = loginSession.countries[indexPath.item]
         delegate?.changeCountry(country: chosenCountry)
         self.dismiss(animated: true)
     }

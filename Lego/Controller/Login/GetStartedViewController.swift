@@ -21,16 +21,16 @@ class GetStartedViewController: UIViewController {
 //    let user = User.init()
     
     override func viewWillAppear(_ animated: Bool) {
-        if (Auth.auth().currentUser != nil) {
-            print("signed in already")
-            //TODO: Navigate to main screen
-            print("User already logged in, can navigate away...")
-//            user.setBio(bio: "hello guys!")
-//            print("My bio is: " + user.getBio())
-//            let shreyasID = "VAon5tawOJ1G4rKaGr28"
-//            user.createChat(otherUserID: shreyasID)
-//            user.sendMessageTo(otherUserID: shreyasID, message: "Hello wanker")
-        }
+//        if (Auth.auth().currentUser != nil) {
+//            print("signed in already")
+//            //TODO: Navigate to main screen
+//            print("User already logged in, can navigate away...")
+////            user.setBio(bio: "hello guys!")
+////            print("My bio is: " + user.getBio())
+////            let shreyasID = "VAon5tawOJ1G4rKaGr28"
+////            user.createChat(otherUserID: shreyasID)
+////            user.sendMessageTo(otherUserID: shreyasID, message: "Hello wanker")
+//        }
         
         view.backgroundColor = LegoColorConstants.backgroundColor
         
@@ -126,13 +126,13 @@ class GetStartedViewController: UIViewController {
     
     @IBAction func phoneBtnPressed(_ sender: UIButton) {
         // Temporarily commenting typical segue below to test map view
-        // self.performSegue(withIdentifier: "getStartedToPhoneNumber", sender: sender)
+         self.performSegue(withIdentifier: "getStartedToPhoneNumber", sender: sender)
         
         // Map view testing
-        let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
-        let mapVC = homeStoryboard.instantiateViewController(withIdentifier: "MapViewController")
+//        let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
+//        let mapVC = homeStoryboard.instantiateViewController(withIdentifier: "HomeTabBarViewController")
 //        self.present(mapVC, animated: true)
-        self.show(mapVC, sender: sender)
+//        self.show(mapVC, sender: sender)
     }
     
 }

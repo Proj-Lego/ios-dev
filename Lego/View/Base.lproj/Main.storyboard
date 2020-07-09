@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r5k-5g-MIi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17132" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r5k-5g-MIi">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17105"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Get Started View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="GetStartedViewController" customModule="Lego" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GetStartedViewController" id="BYZ-38-t0r" customClass="GetStartedViewController" customModule="Lego" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1P-II-VE6">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1P-II-VE6">
                                 <rect key="frame" x="48" y="673.5" width="318" height="72"/>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" id="41a-GY-1n7"/>
                                 </constraints>
@@ -42,7 +44,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Heading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iib-em-8AN">
-                                <rect key="frame" x="48" y="309.5" width="106" height="20"/>
+                                <rect key="frame" x="48" y="309.5" width="105" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -68,7 +70,8 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nKE-NH-RdG" secondAttribute="bottom" constant="48" id="0cE-98-BU2"/>
                             <constraint firstItem="iib-em-8AN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="48" id="1cL-pW-Zv4"/>
@@ -90,7 +93,6 @@
                             <constraint firstItem="iib-em-8AN" firstAttribute="top" secondItem="DDy-bJ-qaP" secondAttribute="bottom" constant="219" id="oEL-go-z1u"/>
                             <constraint firstItem="g1P-II-VE6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="48" id="rEm-cT-hxw"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="GHz-JN-dzJ"/>
                     <connections>
@@ -144,13 +146,13 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="40"/>
                                 <state key="normal" title="&gt;">
-                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="systemBlueColor"/>
                                 </state>
                                 <connections>
                                     <action selector="nextPressed:" destination="zvv-8v-4Ng" eventType="touchUpInside" id="7OZ-ow-ao0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UpQ-qY-i31">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UpQ-qY-i31">
                                 <rect key="frame" x="20" y="200" width="77" height="36"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
@@ -162,7 +164,8 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="5ca-Ce-x4v"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="fme-GT-yfH" firstAttribute="top" secondItem="YIH-ym-8B7" secondAttribute="bottom" constant="14" id="1AV-dl-cb2"/>
                             <constraint firstItem="YIH-ym-8B7" firstAttribute="leading" secondItem="5ca-Ce-x4v" secondAttribute="leading" constant="20" id="5Pi-SI-2GJ"/>
@@ -180,7 +183,6 @@
                             <constraint firstItem="fme-GT-yfH" firstAttribute="leading" secondItem="UpQ-qY-i31" secondAttribute="trailing" constant="3" id="hTS-64-DBm"/>
                             <constraint firstItem="fme-GT-yfH" firstAttribute="leading" secondItem="5ca-Ce-x4v" secondAttribute="leading" constant="100" id="qV2-pT-qiw"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="5ca-Ce-x4v"/>
                     </view>
                     <navigationItem key="navigationItem" id="Zef-jf-WAH"/>
                     <connections>
@@ -223,7 +225,7 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vbx-qS-5kE">
                                 <rect key="frame" x="0.0" y="163" width="414" height="699"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="countryCell" rowHeight="50" id="8kg-dy-HVW" customClass="CountryTableCell" customModule="Lego" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="50"/>
@@ -265,7 +267,8 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="v0y-vy-Z9A"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RBe-mw-gNe" firstAttribute="top" secondItem="v0y-vy-Z9A" secondAttribute="top" id="GY3-sz-CIs"/>
                             <constraint firstItem="v0y-vy-Z9A" firstAttribute="trailing" secondItem="L2U-nu-1PL" secondAttribute="trailing" constant="20" id="HNY-lZ-PMf"/>
@@ -278,7 +281,6 @@
                             <constraint firstItem="Vbx-qS-5kE" firstAttribute="leading" secondItem="v0y-vy-Z9A" secondAttribute="leading" id="l3g-KB-0Xr"/>
                             <constraint firstItem="RBe-mw-gNe" firstAttribute="leading" secondItem="v0y-vy-Z9A" secondAttribute="leading" id="lPR-ZP-Xei"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="v0y-vy-Z9A"/>
                     </view>
                     <navigationItem key="navigationItem" id="P3M-os-hVB"/>
                     <connections>
@@ -333,7 +335,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="40"/>
                                 <state key="normal" title="&gt;">
-                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="systemBlueColor"/>
                                 </state>
                                 <connections>
                                     <action selector="nextPressed:" destination="9LA-GZ-XOk" eventType="touchUpInside" id="ywg-cs-Ulc"/>
@@ -343,14 +345,15 @@
                                 <rect key="frame" x="20" y="826" width="174" height="36"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="Didn't receive a code?">
-                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="systemBlueColor"/>
                                 </state>
                                 <connections>
                                     <action selector="resendCode:" destination="9LA-GZ-XOk" eventType="touchUpInside" id="OqJ-3o-erQ"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="xgz-dQ-69W"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="xgz-dQ-69W" firstAttribute="trailing" secondItem="DhY-x4-xEz" secondAttribute="trailing" constant="20" id="0Sb-9V-COt"/>
                             <constraint firstItem="dMS-aQ-qoL" firstAttribute="leading" secondItem="xgz-dQ-69W" secondAttribute="leading" constant="20" id="1cb-Y8-Bs0"/>
@@ -368,7 +371,6 @@
                             <constraint firstItem="xgz-dQ-69W" firstAttribute="trailing" secondItem="JLe-Oq-3nX" secondAttribute="trailing" constant="20" id="xle-UW-HmM"/>
                             <constraint firstItem="Ip6-Wz-pOS" firstAttribute="centerY" secondItem="crx-nb-f4R" secondAttribute="centerY" id="zfB-am-HVE"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="xgz-dQ-69W"/>
                     </view>
                     <navigationItem key="navigationItem" id="ikH-zu-QDr"/>
                     <connections>
@@ -406,5 +408,11 @@
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="98"/>
         <image name="phone.circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
